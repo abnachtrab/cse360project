@@ -1,0 +1,36 @@
+* {
+    -fx-background-color: #ffffff;
+    -fx-font-family: "Arial";
+}
+
+Label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+Button {
+    -fx-background-color: #aaf;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+TextField, PasswordField {
+    -fx-background-color: #ccf;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.title {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
