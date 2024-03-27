@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="dev.ln13.cse360project.ProviderPortal">
+      fx:controller="dev.ln13.cse360project.frontend.ProviderPortal">
     <HBox alignment="CENTER">
         <Label text="Provider Access Portal" textFill="#0f0f0f"/>
     </HBox>
@@ -18,7 +18,7 @@
             </contentDisplay>
             <graphic>
                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@images/calendar.png"/>
+                    <Image url="@../images/calendar.png"/>
                 </ImageView>
             </graphic>
         </Button>
@@ -28,7 +28,7 @@
             </contentDisplay>
             <graphic>
                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@images/prescription.png"/>
+                    <Image url="@../images/prescription.png"/>
                 </ImageView>
             </graphic>
         </Button>
@@ -38,7 +38,7 @@
             </contentDisplay>
             <graphic>
                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@images/messages.png"/>
+                    <Image url="@../images/messages.png"/>
                 </ImageView>
             </graphic>
         </Button>
@@ -48,7 +48,7 @@
             </contentDisplay>
             <graphic>
                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@images/billing.png"/>
+                    <Image url="@../images/billing.png"/>
                 </ImageView>
             </graphic>
         </Button>
@@ -58,7 +58,7 @@
             </contentDisplay>
             <graphic>
                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@images/settings.png"/>
+                    <Image url="@../images/settings.png"/>
                 </ImageView>
             </graphic>
         </Button>

@@ -1,20 +1,21 @@
-package dev.ln13.cse360project;
+package dev.ln13.cse360project.frontend;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class ProviderPortal {
+public class PatientPortal {
 
     public Label portalName;
     public Button viewAppointmentsButton;
     public Button viewPrescriptionsButton;
-    public Button viewMessagesButton;
+    public Button viewMedicalHistoryButton;
     public Button viewBillingButton;
     public Button settingsButton;
+    public Button viewMessagesButton;
 
     public void initialize() {
-        portalName.setText("Provider Access Portal");
+        portalName.setText("Patient Health Portal");
     }
 
     public void viewAppointments(ActionEvent actionEvent) {
@@ -25,8 +26,8 @@ public class ProviderPortal {
         System.out.println("Viewing prescriptions");
     }
 
-    public void viewMessages(ActionEvent actionEvent) {
-        System.out.println("Viewing messages");
+    public void viewMedicalHistory(ActionEvent actionEvent) {
+        System.out.println("Viewing medical history");
     }
 
     public void viewBilling(ActionEvent actionEvent) {
@@ -35,5 +36,9 @@ public class ProviderPortal {
 
     public void settings(ActionEvent actionEvent) {
         System.out.println("Viewing settings");
+    }
+
+    public void viewMessages(ActionEvent actionEvent) {
+        System.out.println("Viewing messages");
     }
 }

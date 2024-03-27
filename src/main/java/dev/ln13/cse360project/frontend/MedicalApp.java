@@ -1,4 +1,4 @@
-package dev.ln13.cse360project;
+package dev.ln13.cse360project.frontend;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

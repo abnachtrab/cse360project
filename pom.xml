@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>dev.ln13.cse360project/dev.ln13.cse360project.MedicalApp</mainClass>
+                            <mainClass>dev.ln13.cse360project/dev.ln13.cse360project.frontend.MedicalApp</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

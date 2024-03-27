@@ -1,4 +1,4 @@
-package dev.ln13.cse360project;
+package dev.ln13.cse360project.frontend;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
