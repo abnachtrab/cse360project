@@ -6,8 +6,8 @@ import java.util.Arrays;
 public class Child extends Patient {
     private ArrayList<Parent> parents = new ArrayList<>();
 
-    public Child(String name, String dob) {
-        super(name, dob);
+    public Child(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
+        super(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, perscribedMedication, patientHistory, childId, visitSummary);
     }
 
     public ArrayList<Parent> getParents() {
@@ -18,7 +18,7 @@ public class Child extends Patient {
         this.parents = new ArrayList<>();
         this.parents.addAll(Arrays.asList(parents));
     }
-
+    
     public void addParent(Parent parent) {
         parents.add(parent);
     }
@@ -37,11 +37,21 @@ public class Child extends Patient {
                 Child:
                     name: "%s",
                     dob: "%s",
+                    heightCm: "%s",
+                    weightKg: "%s",
+                    restingHeartRate: "%s",
+                    bloodPressurekPa: "%s",
+                    childAccount: "%s",
+                    pharmacyName: "%s",
+                    visitSummary: "%s",
+                    perscribedMedication: "%s",
+                    childId: "%s",
                     parents: [
                         %s
                     ]
-                """.formatted(getName(), getDob(), parentsString.toString());
+                """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getChildId(), parentsString.toString());
     }
+
 
 
 }
