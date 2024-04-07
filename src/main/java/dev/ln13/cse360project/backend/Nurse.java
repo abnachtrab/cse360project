@@ -15,7 +15,44 @@ public class Nurse {
     private long patientWeight;
     private int patientRestingHeartRate;
     private long patientBloodPressurekPa;
+    private int nurseId;
     private ArrayList<Patient> patients = new ArrayList<>();
+    
+    public Nurse(int nurseId, String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
+    		long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
+    	this.nurseId = nurseId;
+    	this.name = name;
+    	this.activePatient = activePatient;
+    	this.visitSummary = visitSummary;
+    	this.prescribedMedication = prescribedMedication;
+    	this.typedMessage = typedMessage;
+    	this.patientName = patientName;
+    	this.patientDob = patientDob;
+    	this.patientHeight = patientHeight;
+    	this.patientWeight = patientWeight;
+    	this.patientRestingHeartRate = patientRestingHeartRate;
+    	this.patientBloodPressurekPa = patientBloodPressurekPa;
+    	
+    	
+    }
+    public Nurse(String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
+    		long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
+  
+    	this.name = name;
+    	this.activePatient = activePatient;
+    	this.visitSummary = visitSummary;
+    	this.prescribedMedication = prescribedMedication;
+    	this.typedMessage = typedMessage;
+    	this.patientName = patientName;
+    	this.patientDob = patientDob;
+    	this.patientHeight = patientHeight;
+    	this.patientWeight = patientWeight;
+    	this.patientRestingHeartRate = patientRestingHeartRate;
+    	this.patientBloodPressurekPa = patientBloodPressurekPa;
+    	
+    	
+    }
+   
 
 
 
