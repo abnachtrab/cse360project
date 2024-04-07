@@ -3,84 +3,80 @@ package dev.ln13.cse360project.backend;
 import java.util.Random;
 
 public class Patient {
-    private String name;
-    private String dob;
-    private long heightCm;
-    private long weightKg;
-    private int restingHeartRate;
-    private long bloodPressurekPa;
-    private boolean childAccount;
-    private String pharmacyName;
-    private String visitSummary;
-    private String perscribedMedication;
-    private String messageHistory;
-    private String typedMessage;
-    private int childId;
-    private String patientHistory;
+	private String name;
+	private String dob;
+	private double heightCm;
+	private double weightKg;
+	private int restingHeartRate;
+	private double bloodPressurekPa;
+	private boolean childAccount;
+	private String pharmacyName;
+	private String visitSummary;
+	private String perscribedMedication;
+	private String messageHistory;
+	private String typedMessage;
+	private String patientHistory;
 	private int patientId;
 
-    public Patient(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
-    	Random rand = new Random();
-        this.name = name;
-        this.dob = dob;
-        this.heightCm = heightCm;
-        this.weightKg = weightKg;
-        this.restingHeartRate = restingHeartRate;
-        this.bloodPressurekPa = bloodPressurekPa;
-        this.childAccount = childAccount;
-        this.pharmacyName = pharmacyName;
-        this.perscribedMedication = perscribedMedication;
-        this.patientHistory = patientHistory;
-        this.childId = childId;
-        this.visitSummary = visitSummary;
-        this.patientId = rand.nextInt(9999);     
-    }
-    public Patient(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary, int patientId) {
-        this.name = name;
-        this.dob = dob;
-        this.heightCm = heightCm;
-        this.weightKg = weightKg;
-        this.restingHeartRate = restingHeartRate;
-        this.bloodPressurekPa = bloodPressurekPa;
-        this.childAccount = childAccount;
-        this.pharmacyName = pharmacyName;
-        this.perscribedMedication = perscribedMedication;
-        this.patientHistory = patientHistory;
-        this.childId = childId;
-        this.visitSummary = visitSummary;
-        this.patientId = patientId;
-    }
+	public Patient(String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+		this.patientId = (new Random()).nextInt(9999);
+		this.name = name;
+		this.dob = dob;
+		this.heightCm = heightCm;
+		this.weightKg = weightKg;
+		this.restingHeartRate = restingHeartRate;
+		this.bloodPressurekPa = bloodPressurekPa;
+		this.childAccount = childAccount;
+		this.pharmacyName = pharmacyName;
+		this.perscribedMedication = perscribedMedication;
+		this.patientHistory = patientHistory;
+		this.visitSummary = visitSummary;
+	}
+	public Patient(int patientId, String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+		this.name = name;
+		this.dob = dob;
+		this.heightCm = heightCm;
+		this.weightKg = weightKg;
+		this.restingHeartRate = restingHeartRate;
+		this.bloodPressurekPa = bloodPressurekPa;
+		this.childAccount = childAccount;
+		this.pharmacyName = pharmacyName;
+		this.perscribedMedication = perscribedMedication;
+		this.patientHistory = patientHistory;
+		this.visitSummary = visitSummary;
+		this.patientId = patientId;
+	}
 
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getDob() {
-        return dob;
-    }
+	public String getDob() {
+		return dob;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
 
-	public long getHeightCm() {
+	public double getHeightCm() {
 		return heightCm;
 	}
 
-	public void setHeightCm(long heightCm) {
+	public void setHeightCm(double heightCm) {
 		this.heightCm = heightCm;
 	}
 
-	public long getWeightKg() {
+	public double getWeightKg() {
 		return weightKg;
 	}
 
-	public void setWeightKg(long weightKg) {
+	public void setWeightKg(double weightKg) {
 		this.weightKg = weightKg;
 	}
 
@@ -92,11 +88,11 @@ public class Patient {
 		this.restingHeartRate = restingHeartRate;
 	}
 
-	public long getBloodPressurekPa() {
+	public double getBloodPressurekPa() {
 		return bloodPressurekPa;
 	}
 
-	public void setBloodPressurekPa(long bloodPressurekPa) {
+	public void setBloodPressurekPa(double bloodPressurekPa) {
 		this.bloodPressurekPa = bloodPressurekPa;
 	}
 
@@ -148,14 +144,6 @@ public class Patient {
 		this.typedMessage = typedMessage;
 	}
 
-	public int getChildId() {
-		return childId;
-	}
-
-	public void setChildId(int childId) {
-		this.childId = childId;
-	}
-
 	public String getPatientHistory() {
 		return patientHistory;
 	}
@@ -163,64 +151,52 @@ public class Patient {
 	public void setPatientHistory(String patientHistory) {
 		this.patientHistory = patientHistory;
 	}
-	public Child setChildInfo(int childId, String childName, String childDob, long childHeight, long childWeight) {
-		Child child = null;
-		child.setName(childName);
-		child.setDob(childDob);
-		child.setHeightCm(childHeight);
-		child.setWeightKg(childWeight);
-		child.setParents(patientId);
-		child.setPatientHistory("New Patient Created\n");
-		return child;
-    }
 
-    public void setPersonalInformation(String name, String dob) {
-        this.name = name;
-        this.dob = dob;
-    }
+	public void setPersonalInformation(String name, String dob) {
+		this.name = name;
+		this.dob = dob;
+	}
 
-    public void setPharmacyData(String pharmacyName, String perscribedMedicine) {
-        this.pharmacyName = pharmacyName;
-        this.perscribedMedication = perscribedMedicine;
-    }
+	public void setPharmacyData(String pharmacyName, String perscribedMedicine) {
+		this.pharmacyName = pharmacyName;
+		this.perscribedMedication = perscribedMedicine;
+	}
 
-    public void getMessageHistory(String messageHistory) {
-        this.messageHistory = messageHistory;
-    }
-    
-    public void getPatientId() {
-    	return this.patientId;
-    }
+	public void getMessageHistory(String messageHistory) {
+		this.messageHistory = messageHistory;
+	}
 
-    public Messenger sendMessage(String typedMessage) {
-        Messenger messenger = new Messenger();
-        messenger.getMessageRecipient();
-        messenger.setMessageSent(typedMessage);
-        messenger.setMessageSender(this.name);
-     
-   
-        
-        messenger.deliverMessage();
-        return messenger;
-    }
+	public int getPatientId() {
+		return this.patientId;
+	}
+
+	public Messenger sendMessage(String typedMessage) {
+		Messenger messenger = new Messenger();
+		messenger.getMessageRecipient();
+		messenger.setMessageSent(typedMessage);
+		messenger.setMessageSender(this.name);
+
+		messenger.deliverMessage();
+		return messenger;
+	}
 
 
-    public void setVitals(long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa) {
-        this.heightCm = heightCm;
-        this.weightKg = weightKg;
-        this.restingHeartRate = restingHeartRate;
-        this.bloodPressurekPa = bloodPressurekPa;
-    }
+	public void setVitals(double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa) {
+		this.heightCm = heightCm;
+		this.weightKg = weightKg;
+		this.restingHeartRate = restingHeartRate;
+		this.bloodPressurekPa = bloodPressurekPa;
+	}
 
-    public void getPatientHistory(String patientHistory) {
-        this.patientHistory = patientHistory;
-    }
+	public void getPatientHistory(String patientHistory) {
+		this.patientHistory = patientHistory;
+	}
 
-    public void setPatientHistory(String patientHistory, String visitSummary) {
-        this.patientHistory = patientHistory;
-        this.visitSummary = visitSummary;
-    }
-	
+	public void setPatientHistory(String patientHistory, String visitSummary) {
+		this.patientHistory = patientHistory;
+		this.visitSummary = visitSummary;
+	}
+
 	@Override
 	public String toString() {
 	    return """

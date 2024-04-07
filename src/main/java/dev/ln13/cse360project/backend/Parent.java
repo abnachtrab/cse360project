@@ -3,35 +3,6 @@ package dev.ln13.cse360project.backend;
 import java.util.ArrayList;
 
 public class Parent extends Patient {
-    private final ArrayList<Child> children = new ArrayList<>();
-
-    public Parent(int parentId, String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
-        super(parentId, name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, perscribedMedication, patientHistory, childId, visitSummary);
-    }
-
-
-    public void addChild(Child child) {
-        children.add(child);
-    }
-
-    public void removeChild(Child child) {
-        children.remove(child);
-    }
-
-    public ArrayList<Child> getChildren() {
-        return children;
-    }
-
-    public Child getChild(String name) {
-        for (Child child : children) {
-            if (child.getName().equals(name)) {
-                return child;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public String toString() {
         StringBuilder childrenString = new StringBuilder();
         for (Child child : children) {
@@ -54,6 +25,37 @@ public class Parent extends Patient {
                         %s
                     ]
                 """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getChildId(), childrenString.toString());
-    }
+	private final ArrayList<Child> children = new ArrayList<>();
+
+	public Parent(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+		super(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, false, pharmacyName, perscribedMedication, patientHistory, visitSummary);
+	}
+
+	public Parent(int id, String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+		super(id, name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, false, pharmacyName, perscribedMedication, patientHistory, visitSummary);
+	}
+
+	public void addChild(Child child) {
+		children.add(child);
+	}
+
+	public void removeChild(Child child) {
+		children.remove(child);
+	}
+
+	public ArrayList<Child> getChildren() {
+		return children;
+	}
+
+	public Child getChild(String name) {
+		for (Child child : children) {
+			if (child.getName().equals(name)) {
+				return child;
+			}
+		}
+		return null;
+	}
+
+	@Override
 
 }
