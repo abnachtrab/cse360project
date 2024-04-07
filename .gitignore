@@ -20,6 +20,8 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.metadata
+
 
 ### Mac OS ###
 .DS_Store
