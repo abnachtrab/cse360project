@@ -35,7 +35,7 @@ public class Patient {
         this.visitSummary = visitSummary;
         this.patientId = rand.nextInt(9999);     
     }
-    public Patient(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary, int patientId) {
+    public Patient(int patientId, String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
         this.name = name;
         this.dob = dob;
         this.heightCm = heightCm;
