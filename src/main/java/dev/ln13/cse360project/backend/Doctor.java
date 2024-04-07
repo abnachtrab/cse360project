@@ -12,6 +12,7 @@ public class Doctor {
     private String visitSummary;
     private String prescribedMedication;
     private String typedMessage;
+    private String docPassword;
     private ArrayList<Patient> patients = new ArrayList<>();
     public Doctor(int docId, String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
     	this.docId = docId;

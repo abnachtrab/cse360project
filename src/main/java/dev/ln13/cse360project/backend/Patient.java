@@ -19,7 +19,6 @@ public class Patient {
 	private int patientId;
 	protected int childId;
 
-
 	public Patient(String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
 		this.patientId = (new Random()).nextInt(9999);
 		this.name = name;

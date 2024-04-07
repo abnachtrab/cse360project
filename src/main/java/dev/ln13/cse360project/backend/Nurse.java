@@ -16,6 +16,7 @@ public class Nurse {
 	private int patientRestingHeartRate;
 	private long patientBloodPressurekPa;
 	private int nurseId;
+	private String nursePassword;
 	private ArrayList<Patient> patients = new ArrayList<>();
 
 	public Nurse(int nurseId, String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
