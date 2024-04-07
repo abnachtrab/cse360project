@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dev.ln13.cse360project.frontend.PatientPortal">
+    <HBox alignment="CENTER">
+        <Label text="Patient Health Portal" textFill="#0f0f0f"/>
+    </HBox>
+
+    <Label fx:id="portalName"/>
+    <Region VBox.vgrow="ALWAYS" />
+    <HBox styleClass="foot" alignment="CENTER">
+        <Button fx:id="viewAppointmentsButton" mnemonicParsing="false" onAction="#viewAppointments" styleClass="btn-btm" text="Appointments">
+            <contentDisplay>
+                <ContentDisplay fx:value="TOP"/>
+            </contentDisplay>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/calendar.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="viewPrescriptionsButton" mnemonicParsing="false" onAction="#viewPrescriptions" styleClass="btn-btm" text="Prescriptions">
+            <contentDisplay>
+                <ContentDisplay fx:value="TOP"/>
+            </contentDisplay>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/prescription.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="viewMessagesButton" mnemonicParsing="false" onAction="#viewMessages" styleClass="btn-btm" text="Messages">
+            <contentDisplay>
+                <ContentDisplay fx:value="TOP"/>
+            </contentDisplay>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/messages.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="viewMedicalHistoryButton" mnemonicParsing="false" onAction="#viewMedicalHistory" styleClass="btn-btm" text="Medical History">
+            <contentDisplay>
+                <ContentDisplay fx:value="TOP"/>
+            </contentDisplay>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/medical-history.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="viewBillingButton" mnemonicParsing="false" onAction="#viewBilling" styleClass="btn-btm" text="Billing">
+            <contentDisplay>
+                <ContentDisplay fx:value="TOP"/>
+            </contentDisplay>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/billing.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#settings" styleClass="btn-btm" text="Settings">
+            <contentDisplay>
+                <ContentDisplay fx:value="TOP"/>
+            </contentDisplay>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/settings.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+</VBox>
