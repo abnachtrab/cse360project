@@ -17,40 +17,9 @@ public class Patient {
 	private String typedMessage;
 	private String patientHistory;
 	private int patientId;
+	protected int childId;
 
-<<<<<<< HEAD
-    public Patient(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
-    	Random rand = new Random();
-        this.name = name;
-        this.dob = dob;
-        this.heightCm = heightCm;
-        this.weightKg = weightKg;
-        this.restingHeartRate = restingHeartRate;
-        this.bloodPressurekPa = bloodPressurekPa;
-        this.childAccount = childAccount;
-        this.pharmacyName = pharmacyName;
-        this.perscribedMedication = perscribedMedication;
-        this.patientHistory = patientHistory;
-        this.childId = childId;
-        this.visitSummary = visitSummary;
-        this.patientId = rand.nextInt(9999);     
-    }
-    public Patient(int patientId, String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
-        this.name = name;
-        this.dob = dob;
-        this.heightCm = heightCm;
-        this.weightKg = weightKg;
-        this.restingHeartRate = restingHeartRate;
-        this.bloodPressurekPa = bloodPressurekPa;
-        this.childAccount = childAccount;
-        this.pharmacyName = pharmacyName;
-        this.perscribedMedication = perscribedMedication;
-        this.patientHistory = patientHistory;
-        this.childId = childId;
-        this.visitSummary = visitSummary;
-        this.patientId = patientId;
-    }
-=======
+
 	public Patient(String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
 		this.patientId = (new Random()).nextInt(9999);
 		this.name = name;
@@ -79,8 +48,6 @@ public class Patient {
 		this.visitSummary = visitSummary;
 		this.patientId = patientId;
 	}
->>>>>>> origin/michael
-
 
 	public String getName() {
 		return name;

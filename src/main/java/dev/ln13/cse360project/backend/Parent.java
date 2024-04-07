@@ -3,6 +3,7 @@ package dev.ln13.cse360project.backend;
 import java.util.ArrayList;
 
 public class Parent extends Patient {
+	
     public String toString() {
         StringBuilder childrenString = new StringBuilder();
         for (Child child : children) {
@@ -24,7 +25,8 @@ public class Parent extends Patient {
                     children: [
                         %s
                     ]
-                """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getChildId(), childrenString.toString());
+                """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getChildId(getName()), childrenString.toString());
+    }
 	private final ArrayList<Child> children = new ArrayList<>();
 
 	public Parent(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
@@ -55,7 +57,16 @@ public class Parent extends Patient {
 		}
 		return null;
 	}
+	public int getChildId(String name) {
+		for(Child child: children) {
+			if(child.getName().equals(name)){
+				return getPatientId();
+			}
+		}
+		return 0;
+	}
 
-	@Override
+
 
 }
+
