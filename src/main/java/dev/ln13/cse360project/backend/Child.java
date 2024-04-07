@@ -6,8 +6,8 @@ import java.util.Arrays;
 public class Child extends Patient {
     private ArrayList<Parent> parents = new ArrayList<>();
 
-    public Child(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
-        super(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, perscribedMedication, patientHistory, childId, visitSummary);
+    public Child(int childId,String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
+        super(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, perscribedMedication, patientHistory, childId, visitSummary, childId);
     }
 
     public ArrayList<Parent> getParents() {
@@ -17,6 +17,7 @@ public class Child extends Patient {
     public void setParents(Parent[] parents) {
         this.parents = new ArrayList<>();
         this.parents.addAll(Arrays.asList(parents));
+        
     }
     
     public void addParent(Parent parent) {

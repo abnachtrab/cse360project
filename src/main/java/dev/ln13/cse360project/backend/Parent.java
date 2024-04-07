@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Parent extends Patient {
     private final ArrayList<Child> children = new ArrayList<>();
 
-    public Parent(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
-        super(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, perscribedMedication, patientHistory, childId, visitSummary);
+    public Parent(int parentId, String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
+        super(parentId, name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, perscribedMedication, patientHistory, childId, visitSummary);
     }
 
 

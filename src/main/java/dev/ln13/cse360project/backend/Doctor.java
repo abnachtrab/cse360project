@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Doctor {
+	private int docId;
     private String firstName;
     private String lastName;
     private Patient activePatient;
@@ -12,6 +13,27 @@ public class Doctor {
     private String prescribedMedication;
     private String typedMessage;
     private ArrayList<Patient> patients = new ArrayList<>();
+    public Doctor(int docId, String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    	this.docId = docId;
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.activePatient = activePatient;
+    	this.visitSummary = visitSummary;
+    	this.prescribedMedication = prescribedMedication;
+    	this.typedMessage = typedMessage;
+    	
+    	
+    }
+    public Doctor(String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.activePatient = activePatient;
+    	this.visitSummary = visitSummary;
+    	this.prescribedMedication = prescribedMedication;
+    	this.typedMessage = typedMessage;
+    	
+    	
+    }
 
     // Getters
     public String getFirstName() {
@@ -79,24 +101,41 @@ public class Doctor {
         return null;
     }
     public Patient getPatientVisitInfo(String activePatient, String patientPersonalInfo, String patientVitals) {
-        // Implement this method
+    	for(Patient patient : patients) {
+    		if(patient.getName().equals(activePatient)) {
+    			return patient;
+    		}
+    	}
+    	System.out.println("Patient not found.");
         return null;
     }
 
-    public void getPerscribedMedicine(String activePatient, String perscribedMedicine) {
+    public Patient getPerscribedMedicine(String activePatient) {
+    	for(Patient patient : patients) {
+    		if(patient.getName().equals(activePatient)) {
+    			return patient;
+    		}
         // Implement this method
     }
+    	System.out.println("Patient not found.");
+        return null;
+   }
 
-    public void getLastVisitSummary(String activePatient) {
-        // Implement this method
+    public Patient getLastVisitSummary(String activePatient) {
+    	for(Patient patient : patients) {
+    		if(patient.getName().equals(activePatient)) {
+    			return patient;
+    		}
+    }System.out.println("Patient not found.");
+    return null;
     }
 
     public void setPerscribedMedicine(String activePatient, String perscribedMedication) {
-        // Implement this method
-    }
+        this.prescribedMedication = perscribedMedication;
+        }
 
     public void setVisitSummary(String activePatient, String visitSummary) {
-        // Implement this method
+        this.visitSummary = visitSummary;
     }
 
     public void addMessageToHistory(String message) {

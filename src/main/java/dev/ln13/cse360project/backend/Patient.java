@@ -1,5 +1,7 @@
 package dev.ln13.cse360project.backend;
 
+import java.util.Random;
+
 public class Patient {
     private String name;
     private String dob;
@@ -15,8 +17,10 @@ public class Patient {
     private String typedMessage;
     private int childId;
     private String patientHistory;
+	private int patientId;
 
     public Patient(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
+    	Random rand = new Random();
         this.name = name;
         this.dob = dob;
         this.heightCm = heightCm;
@@ -29,7 +33,24 @@ public class Patient {
         this.patientHistory = patientHistory;
         this.childId = childId;
         this.visitSummary = visitSummary;
+        this.patientId = rand.nextInt(9999);     
     }
+    public Patient(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary, int patientId) {
+        this.name = name;
+        this.dob = dob;
+        this.heightCm = heightCm;
+        this.weightKg = weightKg;
+        this.restingHeartRate = restingHeartRate;
+        this.bloodPressurekPa = bloodPressurekPa;
+        this.childAccount = childAccount;
+        this.pharmacyName = pharmacyName;
+        this.perscribedMedication = perscribedMedication;
+        this.patientHistory = patientHistory;
+        this.childId = childId;
+        this.visitSummary = visitSummary;
+        this.patientId = patientId;
+    }
+
 
     public String getName() {
         return name;
@@ -142,9 +163,15 @@ public class Patient {
 	public void setPatientHistory(String patientHistory) {
 		this.patientHistory = patientHistory;
 	}
-	public Child setChildInfo(int childId) {
-		return null;
-        // return a Child object
+	public Child setChildInfo(int childId, String childName, String childDob, long childHeight, long childWeight) {
+		Child child = null;
+		child.setName(childName);
+		child.setDob(childDob);
+		child.setHeightCm(childHeight);
+		child.setWeightKg(childWeight);
+		child.setParents(patientId);
+		child.setPatientHistory("New Patient Created\n");
+		return child;
     }
 
     public void setPersonalInformation(String name, String dob) {
@@ -160,14 +187,19 @@ public class Patient {
     public void getMessageHistory(String messageHistory) {
         this.messageHistory = messageHistory;
     }
+    
+    public void getPatientId() {
+    	return this.patientId;
+    }
 
     public Messenger sendMessage(String typedMessage) {
         Messenger messenger = new Messenger();
+        messenger.getMessageRecipient();
         messenger.setMessageSent(typedMessage);
         messenger.setMessageSender(this.name);
-        // Set the recipient and the received message as needed
-        // messenger.setMessageRecipient(...);
-        // messenger.setMessageReceived(...);
+     
+   
+        
         messenger.deliverMessage();
         return messenger;
     }
