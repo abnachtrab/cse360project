@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Child extends Patient {
+<<<<<<< HEAD
     private ArrayList<Parent> parents = new ArrayList<>();
 
     public Child(int childId, String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
@@ -29,6 +30,8 @@ public class Child extends Patient {
     }
 
     @Override
+=======
+>>>>>>> origin/michael
     public String toString() {
         StringBuilder parentsString = new StringBuilder();
         for (Parent parent : parents) {
@@ -52,7 +55,32 @@ public class Child extends Patient {
                     ]
                 """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getChildId(), parentsString.toString());
     }
+	private ArrayList<Parent> parents = new ArrayList<>();
 
+	public Child(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+		super(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, true, pharmacyName, perscribedMedication, patientHistory, visitSummary);
+	}
 
+	public Child(int id, String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+		super(id, name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, true, pharmacyName, perscribedMedication, patientHistory, visitSummary);
+	}
 
+	public ArrayList<Parent> getParents() {
+		return parents;
+	}
+
+	public void setParents(Parent[] parents) {
+		this.parents = new ArrayList<>();
+		this.parents.addAll(Arrays.asList(parents));
+	}
+
+	public void addParent(Parent parent) {
+		parents.add(parent);
+	}
+
+	public void removeParent(Parent parent) {
+		parents.remove(parent);
+	}
+
+	@Override
 }
