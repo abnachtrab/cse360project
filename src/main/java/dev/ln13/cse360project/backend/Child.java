@@ -25,7 +25,7 @@ public class Child extends Patient {
                     parents: [
                         %s
                     ]
-                """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getChildId(), parentsString.toString());
+                """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getPatientId(), parentsString.toString());
     }
 	private ArrayList<Parent> parents = new ArrayList<>();
 
@@ -54,5 +54,7 @@ public class Child extends Patient {
 		parents.remove(parent);
 	}
 
-	@Override
+	
+
+	
 }

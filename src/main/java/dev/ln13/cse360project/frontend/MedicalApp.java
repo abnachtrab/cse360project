@@ -13,9 +13,9 @@ public class MedicalApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        switchView("user-type.fxml", "Medical App", stage);
+        switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App", stage);
     }
-
+    
     public static void switchView(String fxml, String title, Stage stage) throws IOException {
         Parent root = new FXMLLoader(MedicalApp.class.getResource(fxml)).load();
         double winX = stage.getWidth();
@@ -27,7 +27,7 @@ public class MedicalApp extends Application {
         }
         Scene scene = new Scene(root, winX, winY);
         scene.getStylesheets().add(
-                Objects.requireNonNull(MedicalApp.class.getResource("style.css")).toExternalForm()
+                Objects.requireNonNull(MedicalApp.class.getResource("/dev/ln13/cse360project/styles/style.css")).toExternalForm()
         );
         stage.setTitle(title);
         stage.setScene(scene);
