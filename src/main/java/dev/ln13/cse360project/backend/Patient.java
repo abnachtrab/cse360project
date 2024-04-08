@@ -3,10 +3,10 @@ package dev.ln13.cse360project.backend;
 public class Patient {
     private String name;
     private String dob;
-    private long heightCm;
-    private long weightKg;
+    private double heightCm;
+    private double weightKg;
     private int restingHeartRate;
-    private long bloodPressurekPa;
+    private double bloodPressurekPa;
     private boolean childAccount;
     private String pharmacyName;
     private String visitSummary;
@@ -16,7 +16,7 @@ public class Patient {
     private int childId;
     private String patientHistory;
 
-    public Patient(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
+    public Patient(String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
         this.name = name;
         this.dob = dob;
         this.heightCm = heightCm;
@@ -47,20 +47,20 @@ public class Patient {
         this.dob = dob;
     }
 
-	public long getHeightCm() {
+	public double getHeightCm() {
 		return heightCm;
 	}
 
-	public void setHeightCm(long heightCm) {
-		this.heightCm = heightCm;
+	public void setHeightCm(double patientHeight) {
+		this.heightCm = patientHeight;
 	}
 
-	public long getWeightKg() {
+	public double getWeightKg() {
 		return weightKg;
 	}
 
-	public void setWeightKg(long weightKg) {
-		this.weightKg = weightKg;
+	public void setWeightKg(double patientWeight) {
+		this.weightKg = patientWeight;
 	}
 
 	public int getRestingHeartRate() {
@@ -71,12 +71,12 @@ public class Patient {
 		this.restingHeartRate = restingHeartRate;
 	}
 
-	public long getBloodPressurekPa() {
+	public double getBloodPressurekPa() {
 		return bloodPressurekPa;
 	}
 
-	public void setBloodPressurekPa(long bloodPressurekPa) {
-		this.bloodPressurekPa = bloodPressurekPa;
+	public void setBloodPressurekPa(double patientBloodPressurekPa) {
+		this.bloodPressurekPa = patientBloodPressurekPa;
 	}
 
 	public boolean isChildAccount() {
@@ -147,9 +147,12 @@ public class Patient {
         // return a Child object
     }
 
-    public void setPersonalInformation(String name, String dob) {
+    public void setPersonalInformation(String name, String dob, double weight, double height) {
         this.name = name;
         this.dob = dob;
+        this.weightKg = weight;
+        this.heightCm = height;
+        
     }
 
     public void setPharmacyData(String pharmacyName, String perscribedMedicine) {
@@ -173,7 +176,7 @@ public class Patient {
     }
 
 
-    public void setVitals(long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa) {
+    public void setVitals(long heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa) {
         this.heightCm = heightCm;
         this.weightKg = weightKg;
         this.restingHeartRate = restingHeartRate;

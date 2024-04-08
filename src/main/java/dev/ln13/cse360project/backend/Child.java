@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Child extends Patient {
     private ArrayList<Parent> parents = new ArrayList<>();
 
-    public Child(String name, String dob, long heightCm, long weightKg, int restingHeartRate, long bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
+    public Child(String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, int childId, String visitSummary) {
         super(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, perscribedMedication, patientHistory, childId, visitSummary);
     }
 
