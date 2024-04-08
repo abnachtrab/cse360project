@@ -21,6 +21,7 @@ target/
 .springBeans
 .sts4-cache
 .metadata
+.sonarlint
 
 
 ### Mac OS ###

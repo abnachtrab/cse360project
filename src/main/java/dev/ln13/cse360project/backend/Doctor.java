@@ -164,4 +164,10 @@ public class Doctor {
         messenger.deliverMessage();
         return messenger;
     }
+	public String getDocPassword() {
+		return docPassword;
+	}
+	public void setDocPassword(String docPassword) {
+		this.docPassword = docPassword;
+	}
 }

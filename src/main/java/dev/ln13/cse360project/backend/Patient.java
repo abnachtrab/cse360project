@@ -162,8 +162,8 @@ public class Patient {
 		this.perscribedMedication = perscribedMedicine;
 	}
 
-	public void getMessageHistory(String messageHistory) {
-		this.messageHistory = messageHistory;
+	public String getMessageHistory(String messageHistory) {
+		return this.messageHistory = messageHistory;
 	}
 
 	public int getPatientId() {

@@ -21,7 +21,7 @@ public class Nurse {
 
 	public Nurse(int nurseId, String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
 	             long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
-		this.nurseId = nurseId;
+		this.setNurseId(nurseId);
 		this.name = name;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;
@@ -172,5 +172,17 @@ public class Nurse {
 
 	public void setPatientBloodPressurekPa(long patientBloodPressurekPa) {
 		this.patientBloodPressurekPa = patientBloodPressurekPa;
+	}
+	public String getNursePassword() {
+		return nursePassword;
+	}
+	public void setNursePassword(String nursePassword) {
+		this.nursePassword = nursePassword;
+	}
+	public int getNurseId() {
+		return nurseId;
+	}
+	public void setNurseId(int nurseId) {
+		this.nurseId = nurseId;
 	}
 }
