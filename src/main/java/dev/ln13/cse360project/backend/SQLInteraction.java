@@ -12,15 +12,18 @@ public class SQLInteraction {
 
 	public static void main(String[] args) throws SQLException {
 		conn = setupConnection();
-    
+
 		// test scenario
 		Patient p = new Patient("Joe Mama","1984",178.2, 73.1, 90, 42.1, false, "CVS", "None", "None", "Eat less");
 		Doctor d = new Doctor(1, "Gregory", "House", "gamerjoe", p,  "None", "None", "None");
+    Nurse n = new Nurse(1, "Allison Cameron", "gamerjoe", p, "None", "None", "None", p.getName(), p.getDob(), p.getHeightCm(), p.getWeightKg(), p.getRestingHeartRate(), p.getBloodPressurekPa());
 		addPatient(p);
 		addDoctor(d);
-    relateDoctorPatient(d,p);
+    addNurse(n);
+    addNursePatient(n, p);
+    addDoctorPatient(d,p);
 
-		System.out.println(getDoctorPatients(d).size());
+		System.out.println(getNursePatients(n));
 	}
 
 	private static Connection setupConnection() throws SQLException {
@@ -44,6 +47,14 @@ public class SQLInteraction {
 		if (!tables.contains("Doctors_Patients")) {
 			System.out.println("Creating Doctors_Patients table...");
 			stmt.execute("CREATE TABLE Doctors_Patients ( doctor_id INTEGER, patient_id INTEGER, FOREIGN KEY (doctor_id) REFERENCES Doctors(id), FOREIGN KEY (patient_id) REFERENCES Patients(id), PRIMARY KEY (doctor_id, patient_id))");
+		}
+    if (!tables.contains("Nurses")) {
+      System.out.println("Creating Nurses table...");
+      stmt.execute("CREATE TABLE Nurses (id INTEGER PRIMARY KEY, name VARCHAR(255) NOT NULL, active_patient INTEGER, visit_summary TEXT, prescribed_medication TEXT, password VARCHAR(255) NOT NULL, salt VARCHAR(255) NOT NULL, FOREIGN KEY (active_patient) REFERENCES Patients(id))");
+    }
+    if (!tables.contains("Nurses_Patients")) {
+			System.out.println("Creating Nurses_Patients table...");
+			stmt.execute("CREATE TABLE Nurses_Patients ( nurse_id INTEGER, patient_id INTEGER, FOREIGN KEY (nurse_id) REFERENCES Nurses(id), FOREIGN KEY (patient_id) REFERENCES Patients(id), PRIMARY KEY (nurse_id, patient_id))");
 		}
 		return conn;
 	}
@@ -99,6 +110,121 @@ public class SQLInteraction {
 		return saltStr;
 	}
 
+  // NURSE
+  public static void addNurse(Nurse nurse) throws SQLException {
+    String salt = getSaltString();
+    String hashedPass = getSHA256(nurse.getPassword() + salt);
+    String sql = String.format("INSERT INTO Nurses VALUES ( '%d', '%s', '%d', '%s', '%s', '%s', '%s' )", nurse.getNurseId(), nurse.getName(), nurse.getActivePatient().getPatientId(), nurse.getVisitSummary(), nurse.getPrescribedMedication(), hashedPass, salt);
+    stmt.execute(sql);
+  }
+
+  public static Nurse getNurse(int nurseId, String password) throws SQLException {
+		String sql = String.format("SELECT * FROM Nurses WHERE id='%d'", nurseId);
+		ResultSet r = stmt.executeQuery(sql);
+		if (!r.next()) {
+			return null;
+		}
+		String hashedPass = getSHA256(password + r.getString("salt"));
+		if (!hashedPass.equals(r.getString("password"))) {
+			return null;
+		}
+
+		// getting active patient
+		sql = String.format("SELECT * FROM Patients WHERE id='%s'", r.getString("active_patient"));
+		r = stmt.executeQuery(sql);
+
+    Patient p = null;
+    if (r.next()) {
+      r.next();
+      p = new Patient(
+  			Integer.parseInt(r.getString("id")),
+  			r.getString("name"),
+  			r.getString("dob"),
+  			Double.parseDouble(r.getString("height")),
+  			Double.parseDouble(r.getString("weight")),
+  			Integer.parseInt(r.getString("heart_rate")),
+  			Double.parseDouble(r.getString("blood_pressure")),
+  			r.getString("child_account").equals("1") ? true : false,
+  			r.getString("pharmacy"), r.getString("visit_summary"),
+  			r.getString("prescribed_medication"),
+  			r.getString("patient_history")
+  			);
+  		p.setMessageHistory(r.getString("message_history"));
+    }
+
+		// stupid crap because SQLite only supports TYPE_FORWARD_ONLY cursor
+		sql = String.format("SELECT * FROM Nurses WHERE id='%d'", nurseId);
+		r = stmt.executeQuery(sql);
+
+    String pName = "";
+    String pDob = "";
+    double pHeight = 0;
+    double pWeight = 0;
+    int pHeartRate = 0;
+    double pBloodPressure = 0;
+
+    if (p != null) {
+      pName = p.getName();
+      pName = p.getName();
+      pDob = p.getDob();
+      pHeight = p.getHeightCm();
+      pWeight = p.getWeightKg();
+      pHeartRate = p.getRestingHeartRate();
+      pBloodPressure = p.getBloodPressurekPa();
+    }
+
+		Nurse n = new Nurse(
+			Integer.parseInt(r.getString("id")),
+			r.getString("name"),
+			password,
+			p,
+			r.getString("visit_summary"),
+			r.getString("prescribed_medication"),
+			null,
+      pName,
+      pDob,
+      pHeight,
+      pWeight,
+      pHeartRate,
+      pBloodPressure
+			);
+		return n;
+	}
+
+  public static void addNursePatient(Nurse nurse, Patient patient) throws SQLException {
+    String sql = String.format("INSERT INTO Nurses_Patients VALUES ('%d', '%d')", nurse.getNurseId(), patient.getPatientId());
+    stmt.execute(sql);
+  }
+
+  public static void deleteNursePatient(Nurse nurse, Patient patient) throws SQLException {
+    String sql = String.format("DELETE FROM Doctors_Patients WHERE doctor_id = '%d' AND patient_id = '%d'", nurse.getNurseId(), patient.getPatientId());
+    stmt.execute(sql);
+  }
+
+  public static ArrayList<Patient> getNursePatients(Nurse nurse) throws SQLException {
+    String sql = String.format("SELECT Patients.* FROM Patients JOIN Nurses_Patients ON Patients.id = Nurses_Patients.patient_id WHERE Nurses_Patients.nurse_id = '%d'", nurse.getNurseId());
+    ResultSet r = stmt.executeQuery(sql);
+
+    ArrayList<Patient> patients = new ArrayList<Patient>();
+    while (r.next()) {
+      Patient p = new Patient(Integer.parseInt(r.getString("id")),
+      r.getString("name"), r.getString("dob"),
+      Double.parseDouble(r.getString("height")),
+      Double.parseDouble(r.getString("weight")),
+      Integer.parseInt(r.getString("heart_rate")),
+      Double.parseDouble(r.getString("blood_pressure")),
+      r.getString("child_account").equals("1") ? true : false,
+      r.getString("pharmacy"),
+      r.getString("prescribed_medication"),
+      r.getString("patient_history"),
+      r.getString("visit_summary"));
+  		p.setMessageHistory(r.getString("message_history"));
+      patients.add(p);
+    }
+    return patients;
+  }
+
+  // DOCTOR
 	public static void addDoctor(Doctor doctor) throws SQLException {
 		String salt = getSaltString();
 		String hashedPass = getSHA256(doctor.getPassword() + salt);
@@ -120,21 +246,24 @@ public class SQLInteraction {
 		// getting active patient
 		sql = String.format("SELECT * FROM Patients WHERE id='%s'", r.getString("active_patient"));
 		r = stmt.executeQuery(sql);
-		r.next();
-		Patient p = new Patient(
-			Integer.parseInt(r.getString("id")),
-			r.getString("name"),
-			r.getString("dob"),
-			Double.parseDouble(r.getString("height")),
-			Double.parseDouble(r.getString("weight")),
-			Integer.parseInt(r.getString("heart_rate")),
-			Double.parseDouble(r.getString("blood_pressure")),
-			r.getString("child_account").equals("1") ? true : false,
-			r.getString("pharmacy"), r.getString("visit_summary"),
-			r.getString("prescribed_medication"),
-			r.getString("patient_history")
-			);
-		p.setMessageHistory(r.getString("message_history"));
+    Patient p = null;
+		if (r.next()) {
+      r.next();
+      p = new Patient(
+  			Integer.parseInt(r.getString("id")),
+  			r.getString("name"),
+  			r.getString("dob"),
+  			Double.parseDouble(r.getString("height")),
+  			Double.parseDouble(r.getString("weight")),
+  			Integer.parseInt(r.getString("heart_rate")),
+  			Double.parseDouble(r.getString("blood_pressure")),
+  			r.getString("child_account").equals("1") ? true : false,
+  			r.getString("pharmacy"), r.getString("visit_summary"),
+  			r.getString("prescribed_medication"),
+  			r.getString("patient_history")
+  			);
+  		p.setMessageHistory(r.getString("message_history"));
+    }
 
 		// stupid crap because SQLite only supports TYPE_FORWARD_ONLY cursor
 		sql = String.format("SELECT * FROM Doctors WHERE id='%d'", docId);
@@ -169,7 +298,17 @@ public class SQLInteraction {
 
     ArrayList<Patient> patients = new ArrayList<Patient>();
     while (r.next()) {
-      Patient p = new Patient(Integer.parseInt(r.getString("id")), r.getString("name"), r.getString("dob"), Double.parseDouble(r.getString("height")), Double.parseDouble(r.getString("weight")), Integer.parseInt(r.getString("heart_rate")), Double.parseDouble(r.getString("blood_pressure")), r.getString("child_account").equals("1") ? true : false, r.getString("pharmacy"), r.getString("visit_summary"), r.getString("prescribed_medication"), r.getString("patient_history"));
+      Patient p = new Patient(Integer.parseInt(r.getString("id")),
+      r.getString("name"), r.getString("dob"),
+      Double.parseDouble(r.getString("height")),
+      Double.parseDouble(r.getString("weight")),
+      Integer.parseInt(r.getString("heart_rate")),
+      Double.parseDouble(r.getString("blood_pressure")),
+      r.getString("child_account").equals("1") ? true : false,
+      r.getString("pharmacy"),
+      r.getString("prescribed_medication"),
+      r.getString("patient_history"),
+      r.getString("visit_summary"));
   		p.setMessageHistory(r.getString("message_history"));
       patients.add(p);
     }

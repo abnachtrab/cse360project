@@ -231,7 +231,7 @@ public class Patient {
 	                childAccount: "%s",
 	                pharmacyName: "%s",
 	                visitSummary: "%s",
-	                perscribedMedication: "%s",
+	                prescribedMedication: "%s",
 	                messageHistory: "%s",
 	                typedMessage: "%s",
 	                childId: "%s",

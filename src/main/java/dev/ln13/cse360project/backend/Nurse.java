@@ -23,10 +23,11 @@ public class Nurse {
 	private String nursePassword;
   private ArrayList<Patient> patients = new ArrayList<>();
 
-	public Nurse(int nurseId, String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight,
+	public Nurse(int nurseId, String name, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight,
 	             double patientWeight, int patientRestinHeartRate, double patientBloodPressurekPa) {
 		this.nurseId = nurseId;
 		this.name = name;
+		this.nursePassword = password;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;
 		this.prescribedMedication = prescribedMedication;
@@ -40,10 +41,11 @@ public class Nurse {
 
 
 	}
-	public Nurse(String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight,
-	             double patientWeight, int patientRestinHeartRate, double patientBloodPressurekPa) {
+	public Nurse(String name, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight,
+	             double patientWeight, int patientRestingHeartRate, double patientBloodPressurekPa) {
     this.nurseId = (new Random()).nextInt(9999);
 		this.name = name;
+		this.nursePassword = password;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;
 		this.prescribedMedication = prescribedMedication;
@@ -54,8 +56,6 @@ public class Nurse {
 		this.patientWeight = patientWeight;
 		this.patientRestingHeartRate = patientRestingHeartRate;
 		this.patientBloodPressurekPa = patientBloodPressurekPa;
-
-
 	}
 
 	// Implement the operations...
@@ -231,14 +231,17 @@ public class Nurse {
             }
         }
     }
-	public String getNursePassword() {
+	public String getPassword() {
 		return nursePassword;
 	}
-	public void setNursePassword(String nursePassword) {
+	public void setPassword(String nursePassword) {
 		this.nursePassword = nursePassword;
 	}
 	public int getNurseId() {
 		return nurseId;
+	}
+	public String getName() {
+		return name;
 	}
 	public String setNurseId(String nurseId) {
 		Random random = new Random();
