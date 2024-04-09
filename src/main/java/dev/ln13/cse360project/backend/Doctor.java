@@ -15,18 +15,28 @@ public class Doctor {
 	 private String typedMessage;
 	 private String docPassword;
 	 private String messageHistory;
+  
     private ArrayList<Patient> patients = new ArrayList<>();
-
-    public Doctor(String docId, String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
-    	this.docId = generateId();
+    public Doctor(int docId, String firstName, String lastName, String docPassword, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    	this.docId = docId;
     	this.firstName = firstName;
     	this.lastName = lastName;
+      this.docPassword = docPassword;
     	this.activePatient = activePatient;
     	this.visitSummary = visitSummary;
     	this.prescribedMedication = prescribedMedication;
     	this.typedMessage = typedMessage;
-    	
-    	
+    }
+  
+    public Doctor(String firstName, String lastName, String docPassword, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    	this.docId = (new Random()).nextInt(9999);
+      this.firstName = firstName;
+    	this.lastName = lastName;
+      this.docPassword = docPassword;
+    	this.activePatient = activePatient;
+    	this.visitSummary = visitSummary;
+    	this.prescribedMedication = prescribedMedication;
+    	this.typedMessage = typedMessage; 	
     }
 
     // Getters
@@ -64,7 +74,7 @@ public class Doctor {
 
     public String getPrescribedMedication() {
     	if (activePatient != null) {
-    		return activePatient.getPerscribedMedication();
+    		return activePatient.getPrescribedMedication();
     	}
     	else {
     		return "No active patient";
@@ -96,7 +106,7 @@ public class Doctor {
     public void setPrescribedMedication(String prescribedMedication) {
         this.prescribedMedication = prescribedMedication;
     	if (activePatient != null) {
-    		activePatient.setPerscribedMedication(prescribedMedication);
+    		activePatient.setPrescribedMedication(prescribedMedication);
     	}
     	else {
     		System.out.println("No active patient");
@@ -128,13 +138,24 @@ public class Doctor {
         return null;
     }
 
-
-    public Patient getPerscribedMedicine(String activePatient) {
+    public Patient getPrescribedMedicine(String activePatient) {
     	for(Patient patient : patients) {
     		if(patient.getName().equals(activePatient)) {
     			return patient;
     		}
         // Implement this method
+    }
+    	System.out.println("Patient not found.");
+        return null;
+   }
+
+    public Patient getLastVisitSummary(String activePatient) {
+    	for(Patient patient : patients) {
+    		if(patient.getName().equals(activePatient)) {
+    			return patient;
+    		}
+    }System.out.println("Patient not found.");
+    return null;
     }
     	System.out.println("Patient not found.");
         return null;
@@ -191,10 +212,4 @@ public class Doctor {
 	public void setDocPassword(String docPassword) {
 		this.docPassword = docPassword;
 	}
-	private String generateId() {
-        Random random = new Random();
-        int randomNumber = random.nextInt(9000) + 1000; // This will generate a random integer between 1000 and 9999
-        char randomLetter = (char) ('A' + random.nextInt(26)); // This will generate a random letter from A to Z
-        return randomNumber + String.valueOf(randomLetter);
-    }
 }

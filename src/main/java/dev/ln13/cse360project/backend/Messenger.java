@@ -60,4 +60,3 @@ public class Messenger {
     	//figuring out sql
     }
 }
-
