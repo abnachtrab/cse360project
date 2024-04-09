@@ -30,33 +30,30 @@ public class Child extends Patient {
 	public void removeParent(Parent parent) {
 		parents.remove(parent);
 	}
-  
-  public ArrayList<Parent> getParents() {
-        return parents;
-    }
 
-    @Override
-    public String toString() {
-        StringBuilder parentsString = new StringBuilder();
-        for (Parent parent : parents) {
-            parentsString.append(parent.toString()).append("\n");
-        }
-        return """
-                Child:
-                    name: "%s",
-                    dob: "%s",
-                    heightCm: "%s",
-                    weightKg: "%s",
-                    restingHeartRate: "%s",
-                    bloodPressurekPa: "%s",
-                    childAccount: "%s",
-                    pharmacyName: "%s",
-                    visitSummary: "%s",
-                    perscribedMedication: "%s",
-                    childId: "%s",
-                    parents: [
-                        %s
-                    ]
-                """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPerscribedMedication(), getPatientId(), parentsString.toString());
+
+  @Override
+  public String toString() {
+    StringBuilder parentsString = new StringBuilder();
+    for (Parent parent : parents) {
+      parentsString.append(parent.toString()).append("\n");
     }
+    return """
+            Child:
+                name: "%s",
+                dob: "%s",
+                heightCm: "%s",
+                weightKg: "%s",
+                restingHeartRate: "%s",
+                bloodPressurekPa: "%s",
+                childAccount: "%s",
+                pharmacyName: "%s",
+                visitSummary: "%s",
+                perscribedMedication: "%s",
+                childId: "%s",
+                parents: [
+                    %s
+                ]
+            """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPrescribedMedication(), getPatientId(), parentsString.toString());
+  }
 }

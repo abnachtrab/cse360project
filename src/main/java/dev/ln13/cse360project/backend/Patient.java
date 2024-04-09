@@ -20,7 +20,7 @@ public class Patient {
 	protected int childId;
 
 
-	public Patient(String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+	public Patient(String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String prescribedMedication, String patientHistory, String visitSummary) {
 		this.patientId = (new Random()).nextInt(9999);
 		this.name = name;
 		this.dob = dob;
@@ -34,7 +34,7 @@ public class Patient {
 		this.patientHistory = patientHistory;
 		this.visitSummary = visitSummary;
 	}
-	public Patient(int patientId, String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String perscribedMedication, String patientHistory, String visitSummary) {
+	public Patient(int patientId, String name, String dob, double heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa, boolean childAccount, String pharmacyName, String prescribedMedication, String patientHistory, String visitSummary) {
 		this.name = name;
 		this.dob = dob;
 		this.heightCm = heightCm;
@@ -121,12 +121,12 @@ public class Patient {
 		this.visitSummary = visitSummary;
 	}
 
-	public String getPerscribedMedication() {
-		return perscribedMedication;
+	public String getPrescribedMedication() {
+		return prescribedMedication;
 	}
 
-	public void setPerscribedMedication(String perscribedMedication) {
-		this.perscribedMedication = perscribedMedication;
+	public void setPrescribedMedication(String prescribedMedication) {
+		this.prescribedMedication = prescribedMedication;
 	}
 
 	public String getMessageHistory() {
@@ -158,9 +158,9 @@ public class Patient {
 		this.dob = dob;
 	}
 
-	public void setPharmacyData(String pharmacyName, String perscribedMedicine) {
+	public void setPharmacyData(String pharmacyName, String prescribedMedicine) {
 		this.pharmacyName = pharmacyName;
-		this.perscribedMedication = perscribedMedicine;
+		this.prescribedMedication = prescribedMedicine;
 	}
 
 	public void getMessageHistory(String messageHistory) {
@@ -192,7 +192,7 @@ public class Patient {
 	public void getPatientHistory(String patientHistory) {
 		this.patientHistory = patientHistory;
 	}
-  
+
 	public Child setChildInfo(int childId) {
 		return null;
         // return a Child object
@@ -203,29 +203,8 @@ public class Patient {
         this.dob = dob;
         this.weightKg = weight;
         this.heightCm = height;
-        
-    }
 
-    public void setPharmacyData(String pharmacyName, String prescribedMedicine) {
-        this.pharmacyName = pharmacyName;
-        this.prescribedMedication = prescribedMedicine;
     }
-
-    public void getMessageHistory(String messageHistory) {
-        this.messageHistory = messageHistory;
-    }
-
-    public Messenger sendMessage(String typedMessage) {
-        Messenger messenger = new Messenger();
-        messenger.setMessageSent(typedMessage);
-        messenger.setMessageSender(this.name);
-        // Set the recipient and the received message as needed
-        // messenger.setMessageRecipient(...);
-        // messenger.setMessageReceived(...);
-        messenger.deliverMessage();
-        return messenger;
-    }
-
 
     public void setVitals(long heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa) {
         this.heightCm = heightCm;
@@ -234,18 +213,14 @@ public class Patient {
         this.bloodPressurekPa = bloodPressurekPa;
     }
 
-    public void getPatientHistory(String patientHistory) {
-        this.patientHistory = patientHistory;
-    }
-
     public void setPatientHistory(String patientHistory, String visitSummary) {
         this.patientHistory = patientHistory;
         this.visitSummary = visitSummary;
     }
-	
+
 	@Override
 	public String toString() {
-	    return """
+		return """
 	            Patient:
 	                name: "%s",
 	                dob: "%s",
@@ -261,7 +236,7 @@ public class Patient {
 	                typedMessage: "%s",
 	                childId: "%s",
 	                patientHistory: "%s"
-	            """.formatted(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, visitSummary, perscribedMedication, messageHistory, typedMessage, childId, patientHistory);
+	            """.formatted(name, dob, heightCm, weightKg, restingHeartRate, bloodPressurekPa, childAccount, pharmacyName, visitSummary, prescribedMedication, messageHistory, typedMessage, childId, patientHistory);
 	}
 
 }

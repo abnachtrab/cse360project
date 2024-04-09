@@ -19,7 +19,7 @@ public class Nurse {
 	private double patientWeight;
 	private int patientRestingHeartRate;
 	private double patientBloodPressurekPa;
-	private String nurseId;
+	private int nurseId;
 	private String nursePassword;
   private ArrayList<Patient> patients = new ArrayList<>();
 
@@ -102,7 +102,7 @@ public class Nurse {
 		messenger.deliverMessage();
 		return messenger;
 	}
-  
+
 //setters and getters most may be unndeeded but putting them here for now
 	public String getVisitSummary() {
     	if (activePatient != null) {
@@ -119,7 +119,7 @@ public class Nurse {
 
 	public String getPrescribedMedication() {
     	if (activePatient != null) {
-    		return activePatient.getPerscribedMedication();
+    		return activePatient.getPrescribedMedication();
     	}
     	else {
     		return "No active patient";
@@ -237,7 +237,7 @@ public class Nurse {
 	public void setNursePassword(String nursePassword) {
 		this.nursePassword = nursePassword;
 	}
-	public String getNurseId() {
+	public int getNurseId() {
 		return nurseId;
 	}
 	public String setNurseId(String nurseId) {
