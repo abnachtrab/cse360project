@@ -3,41 +3,48 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 
 public class Doctor {
-	private int docId;
-    private String firstName;
-    private String lastName;
-    private Patient activePatient;
-    private String visitSummary;
-    private String prescribedMedication;
-    private String typedMessage;
+	 private String docId;
+	 private String firstName;
+	 private String lastName;
+	 private Patient activePatient;
+	 private String visitSummary;
+	 private String prescribedMedication;
+	 private String typedMessage;
+	 private String docPassword;
+	 private String messageHistory;
+  
     private ArrayList<Patient> patients = new ArrayList<>();
-    public Doctor(int docId, String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    public Doctor(int docId, String firstName, String lastName, String docPassword, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
     	this.docId = docId;
     	this.firstName = firstName;
     	this.lastName = lastName;
+      this.docPassword = docPassword;
     	this.activePatient = activePatient;
     	this.visitSummary = visitSummary;
     	this.prescribedMedication = prescribedMedication;
     	this.typedMessage = typedMessage;
-    	
-    	
     }
-    public Doctor(String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
-    	this.firstName = firstName;
+  
+    public Doctor(String firstName, String lastName, String docPassword, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    	this.docId = (new Random()).nextInt(9999);
+      this.firstName = firstName;
     	this.lastName = lastName;
+      this.docPassword = docPassword;
     	this.activePatient = activePatient;
     	this.visitSummary = visitSummary;
     	this.prescribedMedication = prescribedMedication;
-    	this.typedMessage = typedMessage;
-    	
-    	
+    	this.typedMessage = typedMessage; 	
     }
 
     // Getters
     public String getFirstName() {
         return firstName;
+    }
+    public String getId() {
+        return docId;
     }
 
     public String getLastName() {
@@ -47,13 +54,31 @@ public class Doctor {
     public Patient getActivePatient() {
         return activePatient;
     }
+    public String getPatientName() {
+    	if (activePatient != null) { //just checks if there is activePatient
+    		return activePatient.getName(); //using activePatient as the patient object to get information
+    	}
+    	else {
+    		return "No active patient";
+    	}
+    }
 
     public String getVisitSummary() {
-        return visitSummary;
+    	if (activePatient != null) {
+    		return activePatient.getVisitSummary();
+    	}
+    	else {
+    		return "No active patient";
+    	}
     }
 
     public String getPrescribedMedication() {
-        return prescribedMedication;
+    	if (activePatient != null) {
+    		return activePatient.getPrescribedMedication();
+    	}
+    	else {
+    		return "No active patient";
+    	}
     }
 
     public String getTypedMessage() {
@@ -69,10 +94,6 @@ public class Doctor {
         this.lastName = lastName;
     }
 
-    public void setActivePatient(Patient activePatient) {
-        this.activePatient = activePatient;
-    }
-
     public void setActivePatient(String patientName) {
         for (Patient patient : patients) { // assuming 'patients' is a list of Patient objects
             if (patient.getName().equals(patientName)) {
@@ -84,6 +105,13 @@ public class Doctor {
 
     public void setPrescribedMedication(String prescribedMedication) {
         this.prescribedMedication = prescribedMedication;
+    	if (activePatient != null) {
+    		activePatient.setPrescribedMedication(prescribedMedication);
+    	}
+    	else {
+    		System.out.println("No active patient");
+   
+    	}
     }
 
     public void setTypedMessage(String typedMessage) {
@@ -110,7 +138,7 @@ public class Doctor {
         return null;
     }
 
-    public Patient getPerscribedMedicine(String activePatient) {
+    public Patient getPrescribedMedicine(String activePatient) {
     	for(Patient patient : patients) {
     		if(patient.getName().equals(activePatient)) {
     			return patient;
@@ -129,11 +157,23 @@ public class Doctor {
     }System.out.println("Patient not found.");
     return null;
     }
+    	System.out.println("Patient not found.");
+        return null;
+   }
+
+    public Patient getLastVisitSummary(String activePatient) {
+    	for(Patient patient : patients) {
+    		if(patient.getName().equals(activePatient)) {
+    			return patient;
+    		}
+    }System.out.println("Patient not found.");
+    return null;
+    }
 
     public void setPerscribedMedicine(String activePatient, String perscribedMedication) {
         this.prescribedMedication = perscribedMedication;
         }
-
+    
     public void setVisitSummary(String activePatient, String visitSummary) {
         this.visitSummary = visitSummary;
     }
@@ -152,6 +192,9 @@ public class Doctor {
         String messageHistory = activePatient.getMessageHistory();
         return messageHistory;
     }
+	public void setMessageHistory(String messageHistory) {
+		this.messageHistory = messageHistory;
+	}
 
     public Messenger sendMessage(String activePatient, String typedMessage) {
         Messenger messenger = new Messenger();
@@ -163,4 +206,10 @@ public class Doctor {
         messenger.deliverMessage();
         return messenger;
     }
+	public String getDocPassword() {
+		return docPassword;
+	}
+	public void setDocPassword(String docPassword) {
+		this.docPassword = docPassword;
+	}
 }

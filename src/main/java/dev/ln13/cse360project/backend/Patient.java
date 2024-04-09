@@ -12,7 +12,7 @@ public class Patient {
 	private boolean childAccount;
 	private String pharmacyName;
 	private String visitSummary;
-	private String perscribedMedication;
+	private String prescribedMedication;
 	private String messageHistory;
 	private String typedMessage;
 	private String patientHistory;
@@ -30,7 +30,7 @@ public class Patient {
 		this.bloodPressurekPa = bloodPressurekPa;
 		this.childAccount = childAccount;
 		this.pharmacyName = pharmacyName;
-		this.perscribedMedication = perscribedMedication;
+		this.prescribedMedication = prescribedMedication;
 		this.patientHistory = patientHistory;
 		this.visitSummary = visitSummary;
 	}
@@ -43,7 +43,7 @@ public class Patient {
 		this.bloodPressurekPa = bloodPressurekPa;
 		this.childAccount = childAccount;
 		this.pharmacyName = pharmacyName;
-		this.perscribedMedication = perscribedMedication;
+		this.prescribedMedication = prescribedMedication;
 		this.patientHistory = patientHistory;
 		this.visitSummary = visitSummary;
 		this.patientId = patientId;
@@ -69,16 +69,16 @@ public class Patient {
 		return heightCm;
 	}
 
-	public void setHeightCm(double heightCm) {
-		this.heightCm = heightCm;
+	public void setHeightCm(double patientHeight) {
+		this.heightCm = patientHeight;
 	}
 
 	public double getWeightKg() {
 		return weightKg;
 	}
 
-	public void setWeightKg(double weightKg) {
-		this.weightKg = weightKg;
+	public void setWeightKg(double patientWeight) {
+		this.weightKg = patientWeight;
 	}
 
 	public int getRestingHeartRate() {
@@ -93,8 +93,8 @@ public class Patient {
 		return bloodPressurekPa;
 	}
 
-	public void setBloodPressurekPa(double bloodPressurekPa) {
-		this.bloodPressurekPa = bloodPressurekPa;
+	public void setBloodPressurekPa(double patientBloodPressurekPa) {
+		this.bloodPressurekPa = patientBloodPressurekPa;
 	}
 
 	public boolean isChildAccount() {
@@ -192,12 +192,57 @@ public class Patient {
 	public void getPatientHistory(String patientHistory) {
 		this.patientHistory = patientHistory;
 	}
+  
+	public Child setChildInfo(int childId) {
+		return null;
+        // return a Child object
+    }
 
-	public void setPatientHistory(String patientHistory, String visitSummary) {
-		this.patientHistory = patientHistory;
-		this.visitSummary = visitSummary;
-	}
+    public void setPersonalInformation(String name, String dob, double weight, double height) {
+        this.name = name;
+        this.dob = dob;
+        this.weightKg = weight;
+        this.heightCm = height;
+        
+    }
 
+    public void setPharmacyData(String pharmacyName, String prescribedMedicine) {
+        this.pharmacyName = pharmacyName;
+        this.prescribedMedication = prescribedMedicine;
+    }
+
+    public void getMessageHistory(String messageHistory) {
+        this.messageHistory = messageHistory;
+    }
+
+    public Messenger sendMessage(String typedMessage) {
+        Messenger messenger = new Messenger();
+        messenger.setMessageSent(typedMessage);
+        messenger.setMessageSender(this.name);
+        // Set the recipient and the received message as needed
+        // messenger.setMessageRecipient(...);
+        // messenger.setMessageReceived(...);
+        messenger.deliverMessage();
+        return messenger;
+    }
+
+
+    public void setVitals(long heightCm, double weightKg, int restingHeartRate, double bloodPressurekPa) {
+        this.heightCm = heightCm;
+        this.weightKg = weightKg;
+        this.restingHeartRate = restingHeartRate;
+        this.bloodPressurekPa = bloodPressurekPa;
+    }
+
+    public void getPatientHistory(String patientHistory) {
+        this.patientHistory = patientHistory;
+    }
+
+    public void setPatientHistory(String patientHistory, String visitSummary) {
+        this.patientHistory = patientHistory;
+        this.visitSummary = visitSummary;
+    }
+	
 	@Override
 	public String toString() {
 	    return """
