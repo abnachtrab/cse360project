@@ -1,6 +1,7 @@
 package dev.ln13.cse360project.backend;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 public class Nurse {
@@ -19,9 +20,10 @@ public class Nurse {
 	private String nursePassword;
 	private ArrayList<Patient> patients = new ArrayList<>();
 
-	public Nurse(int nurseId, String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
-	             long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
-		this.setNurseId(nurseId);
+	public Nurse(int nurseId, String nursePassword, String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patientDob, long patientHeight,
+	             long patientWeight, int patientRestingHeartRate, long patientBloodPressurekPa) {
+		this.nurseId = nurseId;
+		this.nursePassword = nursePassword;
 		this.name = name;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;
@@ -37,8 +39,9 @@ public class Nurse {
 
 	}
 	public Nurse(String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
-	             long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
-
+	             long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa, String patientDob, int patientRestingHeartRate) {
+		
+		this.nurseId = (new Random()).nextInt(9999);
 		this.name = name;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;

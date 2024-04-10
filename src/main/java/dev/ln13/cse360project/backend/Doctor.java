@@ -1,6 +1,7 @@
 package dev.ln13.cse360project.backend;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ public class Doctor {
     private String typedMessage;
     private String docPassword;
     private ArrayList<Patient> patients = new ArrayList<>();
-    public Doctor(int docId, String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    public Doctor(int docId, String docPassword, String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
     	this.docId = docId;
     	this.firstName = firstName;
     	this.lastName = lastName;
@@ -22,10 +23,12 @@ public class Doctor {
     	this.visitSummary = visitSummary;
     	this.prescribedMedication = prescribedMedication;
     	this.typedMessage = typedMessage;
+    	this.docPassword = docPassword;
     	
     	
     }
     public Doctor(String firstName, String lastName, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+    	this.setDocId((new Random()).nextInt(9999));
     	this.firstName = firstName;
     	this.lastName = lastName;
     	this.activePatient = activePatient;
@@ -169,5 +172,11 @@ public class Doctor {
 	}
 	public void setDocPassword(String docPassword) {
 		this.docPassword = docPassword;
+	}
+	public int getDocId() {
+		return docId;
+	}
+	public void setDocId(int docId) {
+		this.docId = docId;
 	}
 }
