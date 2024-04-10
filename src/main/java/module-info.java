@@ -1,4 +1,4 @@
-module dev.ln13.cse360project {
+module cse360project {
     requires javafx.controls;
     requires javafx.fxml;
 

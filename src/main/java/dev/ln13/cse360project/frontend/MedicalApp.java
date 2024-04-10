@@ -18,7 +18,7 @@ public class MedicalApp extends Application {
         stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
           stage.getIcons().add(new Image(Objects.requireNonNull(MedicalApp.class.getResource
                 ("/dev/ln13/cse360project/images/logo.jpg")).toExternalForm()));
-        stage.show();
+      
         Parent root = new FXMLLoader(MedicalApp.class.getResource("/dev/ln13/cse360project/layouts/splash.fxml")).load();
         Scene scene = new Scene(root, 600, 600);
         stage.setScene(scene);
@@ -32,9 +32,15 @@ public class MedicalApp extends Application {
         PauseTransition splashScreenDelay = new PauseTransition(javafx.util.Duration.seconds(2));
         splashScreenDelay.setOnFinished(e -> {
             try {
-                stage.setX(DEFAULT_WINDOW_WIDTH);
-                stage.setY(DEFAULT_WINDOW_HEIGHT);
-                switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App", stage);
+            	stage.hide();
+            	Stage mainStage = new Stage();
+            	mainStage.initStyle(javafx.stage.StageStyle.DECORATED);
+                mainStage.setX(DEFAULT_WINDOW_WIDTH);
+                mainStage.setY(DEFAULT_WINDOW_HEIGHT);
+                
+                switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App", mainStage);
+                
+           
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -55,6 +61,7 @@ public class MedicalApp extends Application {
         scene.getStylesheets().add(
                 Objects.requireNonNull(MedicalApp.class.getResource("/dev/ln13/cse360project/styles/style.css")).toExternalForm()
         );
+        
         stage.setTitle(title);
         stage.setScene(scene);
         stage.getIcons().add(new Image(Objects.requireNonNull(MedicalApp.class.getResourceAsStream("/dev/ln13/cse360project/images/logo.jpg"))));
