@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dev.ln13.cse360project.frontend.PatientLogin">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="appNameText" styleClass="title"/>
+    <Label fx:id="portalName"/>
+    <Label fx:id="loginErrorText"/>
+    <TextField fx:id="nameField"/>
+    <TextField fx:id="dobField"/>
+    <Button text="Log In" onAction="#submitLogin"/>
+</VBox>

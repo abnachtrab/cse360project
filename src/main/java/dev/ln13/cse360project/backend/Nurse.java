@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
+
 public class Nurse {
 	private String name;
 	private Patient activePatient;
@@ -12,17 +14,20 @@ public class Nurse {
 	private String typedMessage;
 	private String patientName;
 	private String patientDob;
-	private long patientHeight;
-	private long patientWeight;
+  private String messageHistory;
+	private double patientHeight;
+	private double patientWeight;
 	private int patientRestingHeartRate;
-	private long patientBloodPressurekPa;
+	private double patientBloodPressurekPa;
 	private int nurseId;
-	private ArrayList<Patient> patients = new ArrayList<>();
+	private String nursePassword;
+  private ArrayList<Patient> patients = new ArrayList<>();
 
-	public Nurse(int nurseId, String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
-	             long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
+	public Nurse(int nurseId, String name, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight,
+	             double patientWeight, int patientRestinHeartRate, double patientBloodPressurekPa) {
 		this.nurseId = nurseId;
 		this.name = name;
+		this.nursePassword = password;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;
 		this.prescribedMedication = prescribedMedication;
@@ -36,10 +41,10 @@ public class Nurse {
 
 
 	}
-	public Nurse(String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
-	             long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
-		this.nurseId = (new Random()).nextInt(9999);
+	public Nurse(String name, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight, double patientWeight, int patientRestingHeartRate, double patientBloodPressurekPa) {
+    this.nurseId = (new Random()).nextInt(9999);
 		this.name = name;
+		this.nursePassword = password;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;
 		this.prescribedMedication = prescribedMedication;
@@ -50,12 +55,7 @@ public class Nurse {
 		this.patientWeight = patientWeight;
 		this.patientRestingHeartRate = patientRestingHeartRate;
 		this.patientBloodPressurekPa = patientBloodPressurekPa;
-
-
 	}
-
-
-
 
 	// Implement the operations...
 
@@ -101,9 +101,15 @@ public class Nurse {
 		messenger.deliverMessage();
 		return messenger;
 	}
+
 //setters and getters most may be unndeeded but putting them here for now
 	public String getVisitSummary() {
-		return visitSummary;
+    	if (activePatient != null) {
+    		return activePatient.getVisitSummary();
+    	}
+    	else {
+    		return "No active patient";
+    	}
 	}
 
 	public void setVisitSummary(String visitSummary) {
@@ -111,7 +117,12 @@ public class Nurse {
 	}
 
 	public String getPrescribedMedication() {
-		return prescribedMedication;
+    	if (activePatient != null) {
+    		return activePatient.getPrescribedMedication();
+    	}
+    	else {
+    		return "No active patient";
+    	}
 	}
 
 	public void setPrescribedMedication(String prescribedMedication) {
@@ -127,7 +138,12 @@ public class Nurse {
 	}
 
 	public String getPatientName() {
-		return patientName;
+    	if (activePatient != null) { //just checks if there is activePatient
+    		return activePatient.getName(); //using activePatient as the patient object to get information
+    	}
+    	else {
+    		return "No active patient";
+    	}
 	}
 
 	public void setPatientName(String patientName) {
@@ -135,23 +151,40 @@ public class Nurse {
 	}
 
 	public String getPatientDob() {
-		return patientDob;
+    	if (activePatient != null) { //just checks if there is activePatient
+    		return activePatient.getDob(); //using activePatient as the patient object to get information
+    	}
+    	else {
+    		return "No active patient";
+    	}
 	}
 
 	public void setPatientDob(String patientDob) {
 		this.patientDob = patientDob;
 	}
 
-	public long getPatientHeight() {
-		return patientHeight;
+	public double getPatientHeight() {
+    	if (activePatient != null) { //just checks if there is activePatient
+    		return activePatient.getHeightCm(); //using activePatient as the patient object to get information
+    	}
+    	else {
+    		System.out.println("Patient not found.");
+    		return 0;
+    	}
 	}
 
 	public void setPatientHeight(long patientHeight) {
 		this.patientHeight = patientHeight;
 	}
 
-	public long getPatientWeight() {
-		return patientWeight;
+	public double getPatientWeight() {
+    	if (activePatient != null) { //just checks if there is activePatient
+    		return activePatient.getWeightKg(); //using activePatient as the patient object to get information
+    	}
+    	else {
+    		System.out.println("Patient not found.");
+    		return 0;
+    	}
 	}
 
 	public void setPatientWeight(long patientWeight) {
@@ -159,18 +192,86 @@ public class Nurse {
 	}
 
 	public int getPatientRestingHeartRate() {
-		return patientRestingHeartRate;
+    	if (activePatient != null) { //just checks if there is activePatient
+    		return activePatient.getRestingHeartRate(); //using activePatient as the patient object to get information
+    	}
+    	else {
+    		System.out.println("Patient not found.");
+    		return 0;
+    	}
 	}
 
 	public void setPatientRestingHeartRate(int patientRestingHeartRate) {
 		this.patientRestingHeartRate = patientRestingHeartRate;
 	}
 
-	public long getPatientBloodPressurekPa() {
-		return patientBloodPressurekPa;
+	public double getPatientBloodPressurekPa() {
+    	if (activePatient != null) { //just checks if there is activePatient
+    		return activePatient.getBloodPressurekPa(); //using activePatient as the patient object to get information
+    	}
+    	else {
+    		System.out.println("Patient not found.");
+    		return 0;
+    	}
 	}
 
 	public void setPatientBloodPressurekPa(long patientBloodPressurekPa) {
 		this.patientBloodPressurekPa = patientBloodPressurekPa;
+	}
+    public Patient getActivePatient() {
+        return activePatient;
+    }
+
+    public void setActivePatient(Patient activePatient) {
+        for (Patient patient : patients) { // assuming 'patients' is a list of Patient objects
+            if (patient.getName().equals(patientName)) {
+                this.activePatient = patient;
+                break;
+            }
+        }
+    }
+	public String getPassword() {
+		return nursePassword;
+	}
+	public void setPassword(String nursePassword) {
+		this.nursePassword = nursePassword;
+	}
+	public int getNurseId() {
+		return nurseId;
+	}
+	public String getName() {
+		return name;
+	}
+	public String setNurseId(String nurseId) {
+		Random random = new Random();
+        int randomNumber = random.nextInt(9000) + 1000; // This will generate a random integer between 1000 and 9999
+        char randomLetter = (char) ('A' + random.nextInt(26)); // This will generate a random letter from A to Z
+        return randomNumber + String.valueOf(randomLetter);
+	}
+    public void addMessageToHistory(String message) {
+        try {
+            FileWriter writer = new FileWriter("messageHistory.txt", true); // true means the file is opened in append mode
+            writer.write(message + "\n"); // write the message and a newline
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+    }
+
+    public String getMessageHistory() {
+        String messageHistory = activePatient.getMessageHistory();
+        return messageHistory;
+    }
+	public void setMessageHistory(String messageHistory) {
+		this.messageHistory = messageHistory;
+	}
+	public void setActivePatient(String patientName) {
+	    for (Patient patient : patients) {
+	        if (patient.getName().equals(patientName)) {
+	            this.activePatient = patient;
+	            return;
+	        }
+	    }
+	    System.out.println("Patient not found.");
 	}
 }
