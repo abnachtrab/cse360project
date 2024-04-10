@@ -29,6 +29,7 @@ public class Doctor {
 
 	}
 	public Doctor(String firstName, String lastName, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+		this.docId = (new Random()).nextInt(9999);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
