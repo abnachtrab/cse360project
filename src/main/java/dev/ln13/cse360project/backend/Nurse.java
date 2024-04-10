@@ -1,6 +1,7 @@
 package dev.ln13.cse360project.backend;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 public class Nurse {
@@ -37,7 +38,7 @@ public class Nurse {
 	}
 	public Nurse(String name, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, long patientHeight,
 	             long patientWeight, int patientRestinHeartRate, long patientBloodPressurekPa) {
-
+		this.nurseId = (new Random()).nextInt(9999);
 		this.name = name;
 		this.activePatient = activePatient;
 		this.visitSummary = visitSummary;
