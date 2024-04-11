@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml" 
+	fx:controller="dev.ln13.cse360project.frontend.PatientIntake">
+  <HBox alignment="CENTER">
+        <Label text="Patient Intake" textFill="#0f0f0f"/>
+    </HBox>
+        <Label fx:id="appNameText" styleClass="title"/>
+        <Label fx:id="portalName"/>
+        <Label text="Patient Name"/>
+        <Label text =""/>
+        
+        <Label text="Perscription Recomendations:"/>
+        <TextField fx:id="perscriptionField"/>
+        
+        <Label text="General recomendations"/>
+        <TextField fx:id="recomendationField"/>
+        
+        
+        
+        <Button fx:id="saveRecimendationButton" mnemonicParsing="false" onAction="#saveForm" text="Submit">
+        </Button>
+         
+
+</VBox>

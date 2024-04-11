@@ -22,7 +22,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="viewPrescriptionsButton" mnemonicParsing="false" onAction="#viewPrescriptions" text="Prescriptions">
+        <Button fx:id="viewPatientVitalsForm" mnemonicParsing="false" onAction="#viewPatientVitalsForm" text="Patient Vitals Form">
             <contentDisplay>
                 <ContentDisplay fx:value="TOP"/>
             </contentDisplay>
