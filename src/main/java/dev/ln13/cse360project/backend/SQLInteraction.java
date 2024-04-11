@@ -221,7 +221,11 @@ public class SQLInteraction {
     public static void addNurse(Nurse nurse) throws SQLException {
         String salt = getSaltString();
         String hashedPass = getSHA256(nurse.getPassword() + salt);
-        String sql = String.format("INSERT INTO Nurses VALUES ( '%d', '%s', '%d', '%s', '%s', '%s', '%s' )", nurse.getNurseId(), nurse.getName(), nurse.getActivePatient().getPatientId(), nurse.getVisitSummary(), nurse.getPrescribedMedication(), hashedPass, salt);
+        if (nurse.getActivePatient()) {
+          String sql = String.format("INSERT INTO Nurses VALUES ( '%d', '%s', '%d', '%s', '%s', '%s', '%s' )", nurse.getNurseId(), nurse.getName(), nurse.getActivePatient().getPatientId(), nurse.getVisitSummary(), nurse.getPrescribedMedication(), hashedPass, salt);
+        } else {
+          String sql = String.format("INSERT INTO Nurses VALUES ( '%d', '%s', '%d', '%s', '%s', '%s', '%s' )", nurse.getNurseId(), nurse.getName(), 0, "", "", hashedPass, salt);
+        }
         stmt.execute(sql);
     }
 
