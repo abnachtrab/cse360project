@@ -30,6 +30,7 @@ public class PatientLogin {
     }
 
     public void submitLogin(ActionEvent actionEvent) throws SQLException, IOException {
+    	SQLInteraction.main(null);
     	 String patientName = nameField.getText().trim();
          String dob = dobField.getText().trim();
          

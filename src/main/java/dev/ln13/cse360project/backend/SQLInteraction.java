@@ -9,9 +9,33 @@ public class SQLInteraction {
     static Connection conn;
     static Statement stmt;
 
+<<<<<<< Upstream, based on branch 'main' of git@github.com:abnachtrab/cse360project.git
     public static void main(String[] args) throws SQLException {
         conn = setupConnection();
+=======
+	 public static void main(String[] args) throws SQLException {
+	 	//conn = setupConnection();
+  
+	 	// test scenario
+		/*
+		 * Patient p = new Patient("Joe Mama","1984",178.2, 73.1, 90, 42.1, false,
+		 * "CVS", "None", "None", "Eat less"); Doctor d = new Doctor(1, "Gregory",
+		 * "House", "gamerjoe", p, "None", "None", "None"); 
+		 * Nurse n = new Nurse(2,
+		 * "Allison Cameron", "gamerjoe", p, "None", "None", "None", p.getName(),
+		 * p.getDob(), p.getHeightCm(), p.getWeightKg(), p.getRestingHeartRate(),
+		 * p.getBloodPressurekPa()); Parent pa = new Parent("Bob", "1942", 128, 129, 29,
+		 * 912,"CVS", "None", "None", "None"); Child c = new Child("Bob2", "1942", 128,
+		 * 129, 29, 912, true ,"CVS", "None", "None", "None"); addPatient(p);
+		 * addDoctor(d); addNurse(n); addNursePatient(n, p); addDoctorPatient(d,p);
+		 * 
+		 * addChild(c); addParent(pa); addParentChild(pa, c); addNursePatient(n, c);
+		 * addNursePatient(n, pa);
+		 */
+	 }
+>>>>>>> 0a19a8f Patient Intake
 
+<<<<<<< Upstream, based on branch 'main' of git@github.com:abnachtrab/cse360project.git
         // test scenario
         Patient p = new Patient("Joe Mama", "1984", 178.2, 73.1, 90, 42.1, false, "CVS", "None", "None", "Eat less");
         Doctor d = new Doctor(1, "Gregory", "House", "gamerjoe", p, "None", "None", "None");
@@ -23,6 +47,13 @@ public class SQLInteraction {
         addNurse(n);
         addNursePatient(n, p);
         addDoctorPatient(d, p);
+=======
+	public static Connection setupConnection() throws SQLException {
+		// Check if database exists
+		
+		conn = DriverManager.getConnection("jdbc:sqlite:medical.db");
+		stmt = conn.createStatement();
+>>>>>>> 0a19a8f Patient Intake
 
         addChild(c);
         addParent(pa);
