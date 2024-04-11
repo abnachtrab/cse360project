@@ -513,6 +513,13 @@ public class SQLInteraction {
         return p;
     }
 
+    public static void editPatient(Patient patient) throws SQLException{
+      String sql = String.format("DELETE FROM Patients WHERE id = '%d'", patient.getPatientId());
+      executeUpdate(sql);
+
+      addPatient(patient);
+    }
+
     public static void closeConnection() throws SQLException {
         conn.close();
     }
