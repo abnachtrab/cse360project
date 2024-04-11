@@ -54,25 +54,5 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="viewBillingButton" mnemonicParsing="false" onAction="#viewBilling" styleClass="btn-btm" text="Billing">
-            <contentDisplay>
-                <ContentDisplay fx:value="TOP"/>
-            </contentDisplay>
-            <graphic>
-                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/billing.png"/>
-                </ImageView>
-            </graphic>
-        </Button>
-        <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#settings" styleClass="btn-btm" text="Settings">
-            <contentDisplay>
-                <ContentDisplay fx:value="TOP"/>
-            </contentDisplay>
-            <graphic>
-                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/settings.png"/>
-                </ImageView>
-            </graphic>
-        </Button>
     </HBox>
 </VBox>

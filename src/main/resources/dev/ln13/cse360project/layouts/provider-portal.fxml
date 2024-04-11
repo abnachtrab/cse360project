@@ -18,7 +18,7 @@
             </contentDisplay>
             <graphic>
                 <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/calendar.png"/>
+                    <Image url="@../images/billing.png"/>
                 </ImageView>
             </graphic>
         </Button>
@@ -52,15 +52,6 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#settings" text="Settings">
-            <contentDisplay>
-                <ContentDisplay fx:value="TOP"/>
-            </contentDisplay>
-            <graphic>
-                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/settings.png"/>
-                </ImageView>
-            </graphic>
-        </Button>
+        
     </HBox>
 </VBox>

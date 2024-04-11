@@ -1,47 +1,33 @@
 package dev.ln13.cse360project.frontend;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
+import dev.ln13.cse360project.backend.Patient;
+import dev.ln13.cse360project.backend.SQLInteraction;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class doctorEval {
-    public Label appNameText;
-    public Label portalName;
-    public Label loginErrorText;
-    public TextField nameField;
-    public TextField dobField;
+public class doctorEval extends ProviderPortal {
+ 
+    public Label patientName;
+    public TextField perscriptionField;
+    public TextField recomendationField;
     
    
 
-    public void initialize() throws SQLException {
-        appNameText.setText("Doctor Eval Form");
-        portalName.setText("Patient Health Portal");
-        nameField.setPromptText("Patient Name");
-        dobField.setPromptText("Date of Birth (MM/DD/YYYY)");
-               
+    public void initializeEval() throws SQLException {
+        perscriptionField.setPromptText("");
+        recomendationField.setPromptText("Date of Birth (MM/DD/YYYY)");  
     }
 
-    public void submitLogin(ActionEvent actionEvent) throws SQLException, IOException {
+    public void saveForm(ActionEvent actionEvent) throws SQLException, IOException {
     	SQLInteraction.main(null);
-    	 String patientName = nameField.getText().trim();
-         String dob = dobField.getText().trim();
-         
-			
-        try { 
-			Patient patient = SQLInteraction.getPatient(patientName, dob);
-			 
-			if (patient != null) {	
-				MedicalApp.switchView("/dev/ln13/cse360project/layouts/patient-portal.fxml", "Patient Health Portal", (Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
-				System.out.println("Login Successful"); 
-			  	} 
-			else {
-				loginErrorText.setText("Invalid credentials. Please try again."); 
-			  	}
-		}
-		catch (SQLException e) { 
-			  	e.printStackTrace();
-			  	loginErrorText.setText("Database error occurred"); 
-		}
+    	 String perscriptionString = perscriptionField.getText().trim();
+         String recomendatioString = recomendationField.getText().trim();
+        System.out.println("Perscription: " + perscriptionString);  
+        System.out.println("Recomendation: " + recomendatioString);
+			 }
         
     }
-}

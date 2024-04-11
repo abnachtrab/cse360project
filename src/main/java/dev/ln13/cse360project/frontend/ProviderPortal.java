@@ -22,7 +22,8 @@ public class ProviderPortal {
     }
 
     public void viewAppointments(ActionEvent actionEvent) {
-        System.out.println("Viewing appointments");
+        MedicalApp.switchView("/dev/ln13/cse360project/layouts/recomendation-form.fxml", "Evaluation", (Stage)((Node) actionEvent.getSource()).getScene().getWindow());   
+        System.out.println("Viewing  evaluation form");
     }
 
     public void viewPatientVitalsForm(ActionEvent actionEvent) {
