@@ -23,7 +23,7 @@ public class doctorEval extends ProviderPortal {
     }
 
     public void saveForm(ActionEvent actionEvent) throws SQLException, IOException {
-    	SQLInteraction.main(null);
+    	
     	 String perscriptionString = perscriptionField.getText().trim();
          String recomendatioString = recomendationField.getText().trim();
         System.out.println("Perscription: " + perscriptionString);  
