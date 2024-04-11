@@ -7,15 +7,24 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+import java.sql.SQLException;
+import dev.ln13.cse360project.backend.SQLInteraction;
+
 public class MedicalApp extends Application {
     public static final int DEFAULT_WINDOW_WIDTH = 800;
     public static final int DEFAULT_WINDOW_HEIGHT = 600;
 
     @Override
     public void start(Stage stage) throws IOException {
+        try {
+          SQLInteraction.setupConnection();
+        } catch (SQLException e) {
+          System.out.println("Database connection failed.");
+          return;
+        }
         switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App", stage);
     }
-    
+
     public static void switchView(String fxml, String title, Stage stage) throws IOException {
         Parent root = new FXMLLoader(MedicalApp.class.getResource(fxml)).load();
         double winX = stage.getWidth();
