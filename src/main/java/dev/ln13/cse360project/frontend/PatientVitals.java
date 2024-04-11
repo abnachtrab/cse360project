@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class PatientVitalsForm {
+public class PatientVitals {
   public Label formTitle;
   public Label patientNameLabel;
   public Label patientDobLabel;
@@ -36,23 +36,25 @@ public class PatientVitalsForm {
       double weight = Double.parseDouble(weightField.getText());
       double height = Double.parseDouble(heightField.getText());
       double bloodPressure = Double.parseDouble(bloodPressureField.getText());
-      double heartRate = Double.parseDouble(heartRateField.getText());
+      int heartRate = Integer.parseInt(heartRateField.getText());
 
       Patient p = SQLInteraction.getPatient(patientName, patientDob);
       if (p == null) {
-        formTitle.setText("No Patient with that Data")
+        formTitle.setText("No Patient with that Data");
         return;
       }
-      p.setWeightKg(weight)
-      p.setHeightCm(weight)
-      p.setRestingHeartRate(heartRate)
-      p.setBloodPressurekPa(bloodPressure)
+      p.setWeightKg(weight);
+      p.setHeightCm(weight);
+      p.setRestingHeartRate(heartRate);
+      p.setBloodPressurekPa(bloodPressure);
 
       SQLInteraction.editPatient(p);
 
-      formTitle.setText("Done")
+      formTitle.setText("Done");
     } catch (NumberFormatException e) {
-      formTitle.setText("Invalid Field Input")
+      formTitle.setText("Invalid Field Input");
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
     }
   }
 

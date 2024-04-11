@@ -515,7 +515,7 @@ public class SQLInteraction {
 
     public static void editPatient(Patient patient) throws SQLException{
       String sql = String.format("DELETE FROM Patients WHERE id = '%d'", patient.getPatientId());
-      executeUpdate(sql);
+      stmt.executeUpdate(sql);
 
       addPatient(patient);
     }
