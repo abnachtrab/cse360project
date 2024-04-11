@@ -28,6 +28,7 @@ public class createAccount {
     public TextField confirmPassword;
     public CheckBox isNurse;
     public Label nurseCheckboxText;
+    public Label createAccountError;
 
 
     public void initialize() throws SQLException {
