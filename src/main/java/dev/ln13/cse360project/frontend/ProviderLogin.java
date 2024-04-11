@@ -32,14 +32,13 @@ public class ProviderLogin {
         // TODO: Implement login functionality
         // FOR NOW, redirect to the logged-in view, but without a proper username
     	String providerID = usernameField.getText().trim();
-        String password = passwordField.getText().trim();
+        String dob = passwordField.getText().trim();
 
 
        try {
        		int ID = Integer.parseInt(providerID);
-			Nurse nurse = SQLInteraction.getNurse(ID, password);
-			Doctor doctor = SQLInteraction.getDoctor(ID, password);
-      System.out.println(doctor.getFirstName());
+			Nurse nurse = SQLInteraction.getNurse(ID, dob);
+			Doctor doctor = SQLInteraction.getDoctor(ID, dob);
 
 			if (nurse != null || doctor != null) {
 				 MedicalApp.switchView("/dev/ln13/cse360project/layouts/provider-portal.fxml", "Provider Access Portal",
@@ -50,7 +49,6 @@ public class ProviderLogin {
 				loginErrorText.setText("Invalid credentials. Please try again.");
 			  	}
 		}catch (NumberFormatException e) {
-        e.printStackTrace();
 	        loginErrorText.setText("Invalid provider ID.");
 	        }
 		catch (SQLException e) {
