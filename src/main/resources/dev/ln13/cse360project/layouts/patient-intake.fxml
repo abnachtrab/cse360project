@@ -3,9 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-
 <VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml" 
 	fx:controller="dev.ln13.cse360project.frontend.PatientIntake">
   <HBox alignment="CENTER">
