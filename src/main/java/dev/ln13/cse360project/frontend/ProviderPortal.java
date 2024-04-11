@@ -12,7 +12,7 @@ public class ProviderPortal {
 
     public Label portalName;
     public Button viewAppointmentsButton;
-    public Button viewPrescriptionsButton;
+    public Button viewPatientVitalsForm;
     public Button viewMessagesButton;
     public Button viewPatientIntakeButton;
     public Button settingsButton;
@@ -25,9 +25,14 @@ public class ProviderPortal {
         System.out.println("Viewing appointments");
     }
 
-    public void viewPrescriptions(ActionEvent actionEvent) {
-        System.out.println("Viewing prescriptions");
+    public void viewPatientVitalsForm(ActionEvent actionEvent) {
+      MedicalApp.switchView("/dev/ln13/cse360project/layouts/patient-vitals.fxml",
+      "Patient Intake", (Stage)((Node) actionEvent.getSource()).getScene().getWindow());
+
+      System.out.println("Viewing Patient Vitals Form");
+
     }
+
 
     public void viewMessages(ActionEvent actionEvent) {
         System.out.println("Viewing messages");
