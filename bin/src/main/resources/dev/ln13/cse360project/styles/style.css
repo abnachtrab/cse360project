@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     -fx-background-color: #fff;
     -fx-font-family: "Segoe UI Emoji";
@@ -38,4 +39,46 @@ TextField, PasswordField {
     -fx-border-radius: 0px;
     -fx-background-radius: 0px;
     -fx-font-size: 10px;
+=======
+* {
+    -fx-background-color: #fff;
+    -fx-font-family: "Segoe UI Emoji";
+}
+
+Label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+Button {
+    -fx-background-color: #aaf;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-border-width: 2px;
+}
+
+TextField, PasswordField {
+    -fx-background-color: #ccf;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.title {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.foot {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.btn-btm {
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-font-size: 10px;
+>>>>>>> 31ebfcf3c13794012c36ff411ddf2c54c9244e47
 }
