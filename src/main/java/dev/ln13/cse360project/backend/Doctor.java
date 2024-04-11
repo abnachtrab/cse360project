@@ -17,7 +17,8 @@ public class Doctor {
 	private String password;
 	private ArrayList<Patient> patients = new ArrayList<Patient>();
 
-	public Doctor(int docId, String firstName, String lastName, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage) {
+	public Doctor(int docId, String firstName, String lastName, String password, Patient activePatient, 
+					String visitSummary, String prescribedMedication, String typedMessage) {
 		this.docId = docId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -181,3 +182,4 @@ public class Doctor {
 		return messenger;
 	}
 }
+

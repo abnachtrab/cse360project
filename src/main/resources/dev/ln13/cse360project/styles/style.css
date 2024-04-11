@@ -7,6 +7,16 @@ Label {
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
+CheckBox {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-border-color: #000;
+    
+    
+}
+.check-box:selected .mark {
+    -fx-background-color: rgb(7, 113, 219);
+}
 
 Button {
     -fx-background-color: #aaf;

@@ -2,6 +2,7 @@ package dev.ln13.cse360project.frontend;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 
 import dev.ln13.cse360project.backend.Doctor;
 import dev.ln13.cse360project.backend.Nurse;
-import dev.ln13.cse360project.backend.SQLInteraction;
+import dev.ln13.cse360project.backend.SQLInteraction;;
 
 public class ProviderLogin {
     public Label appNameText;
@@ -57,5 +58,19 @@ public class ProviderLogin {
 		}
 
        }
+	   public void backToMain(ActionEvent actionEvent) throws IOException {
+	        MedicalApp.switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App",
+	                (Stage)((Node) actionEvent.getSource()).getScene().getWindow()
+	        );
+	    }
+		public void createAccount(ActionEvent actionEvent) throws IOException {
+	        MedicalApp.switchView("/dev/ln13/cse360project/layouts/create-account.fxml", "Create Account",
+	                (Stage)((Node) actionEvent.getSource()).getScene().getWindow());
+					 
+	        
+	    }
+	}
+		
 
-}
+
+

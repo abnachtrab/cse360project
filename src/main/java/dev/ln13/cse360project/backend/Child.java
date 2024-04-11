@@ -57,3 +57,4 @@ public class Child extends Patient {
             """.formatted(getName(), getDob(), getHeightCm(), getWeightKg(), getRestingHeartRate(), getBloodPressurekPa(), isChildAccount(), getPharmacyName(), getVisitSummary(), getPrescribedMedication(), getPatientId(), parentsString.toString());
   }
 }
+
