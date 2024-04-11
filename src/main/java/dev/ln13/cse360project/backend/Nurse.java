@@ -41,8 +41,7 @@ public class Nurse {
 
 
 	}
-	public Nurse(String name, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight,
-	             double patientWeight, int patientRestingHeartRate, double patientBloodPressurekPa) {
+	public Nurse(String name, String password, Patient activePatient, String visitSummary, String prescribedMedication, String typedMessage, String patientName, String patiendDob, double patientHeight, double patientWeight, int patientRestingHeartRate, double patientBloodPressurekPa) {
     this.nurseId = (new Random()).nextInt(9999);
 		this.name = name;
 		this.nursePassword = password;

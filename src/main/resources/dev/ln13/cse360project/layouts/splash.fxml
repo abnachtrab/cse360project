@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dev.ln13.cse360project.frontend.Splash">
+    <ImageView fitHeight="600.0" fitWidth="600.0"  pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/logo.jpg" />
+    </ImageView>
+</VBox>
