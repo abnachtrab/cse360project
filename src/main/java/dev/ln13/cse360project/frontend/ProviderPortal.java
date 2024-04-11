@@ -1,44 +1,3 @@
-<<<<<<< Upstream, based on branch 'main' of git@github.com:abnachtrab/cse360project.git
-package dev.ln13.cse360project.frontend;
-
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
-public class ProviderPortal {
-
-    public Label portalName;
-    public Button viewAppointmentsButton;
-    public Button viewPrescriptionsButton;
-    public Button viewMessagesButton;
-    public Button viewBillingButton;
-    public Button settingsButton;
-
-    public void initialize() {
-        portalName.setText("Provider Access Portal");
-    }
-
-    public void viewAppointments(ActionEvent actionEvent) {
-        System.out.println("Viewing appointments");
-    }
-
-    public void viewPrescriptions(ActionEvent actionEvent) {
-        System.out.println("Viewing prescriptions");
-    }
-
-    public void viewMessages(ActionEvent actionEvent) {
-        System.out.println("Viewing messages");
-    }
-
-    public void viewBilling(ActionEvent actionEvent) {
-        System.out.println("Viewing billing");
-    }
-
-    public void settings(ActionEvent actionEvent) {
-        System.out.println("Viewing settings");
-    }
-}
-=======
 package dev.ln13.cse360project.frontend;
 
 import java.io.IOException;
@@ -75,21 +34,14 @@ public class ProviderPortal {
     }
 
     public void viewPatientIntake(ActionEvent actionEvent) {
-		  try {
-		  MedicalApp.switchView("/dev/ln13/cse360project/layouts/patient-intake.fxml",
-		  "Patient Intake", (Stage)((Node) actionEvent.getSource()).getScene().getWindow());
-		  
-		  System.out.println("Viewing Patient Intake"); 
-		  } 
-		  catch (IOException e) { 
-			  e.printStackTrace();
-			   System.out.println("Error loading patient intake FXML");  
-		  }
-		 
+  		  MedicalApp.switchView("/dev/ln13/cse360project/layouts/patient-intake.fxml",
+  		  "Patient Intake", (Stage)((Node) actionEvent.getSource()).getScene().getWindow());
+
+  		  System.out.println("Viewing Patient Intake");
+
     }
 
     public void settings(ActionEvent actionEvent) {
         System.out.println("Viewing settings");
     }
 }
->>>>>>> 0a19a8f Patient Intake
