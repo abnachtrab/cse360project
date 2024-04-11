@@ -1,8 +1,10 @@
 package dev.ln13.cse360project.frontend;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class PatientPortal {
 
@@ -39,6 +41,6 @@ public class PatientPortal {
     }
 
     public void viewMessages(ActionEvent actionEvent) {
-        System.out.println("Viewing messages");
+        MedicalApp.switchView("/dev/ln13/cse360project/layouts/messenger.fxml", "Messenger", (Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
     }
 }
