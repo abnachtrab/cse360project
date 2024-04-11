@@ -30,7 +30,6 @@ public class PatientLogin {
     }
 
     public void submitLogin(ActionEvent actionEvent) throws SQLException, IOException {
-    	SQLInteraction.main(null);
     	 String patientName = nameField.getText().trim();
          String dob = dobField.getText().trim();
          
@@ -38,7 +37,9 @@ public class PatientLogin {
         try { 
 			Patient patient = SQLInteraction.getPatient(patientName, dob);
 			 
-			if (patient != null) {	
+			if (patient != null) {
+                MedicalApp.patientName = patientName;
+                MedicalApp.dob = dob;
 				MedicalApp.switchView("/dev/ln13/cse360project/layouts/patient-portal.fxml", "Patient Health Portal", (Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
 				System.out.println("Login Successful"); 
 			  	} 

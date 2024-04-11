@@ -16,6 +16,8 @@ public class MedicalApp extends Application {
     public static final int DEFAULT_WINDOW_WIDTH = 800;
     public static final int DEFAULT_WINDOW_HEIGHT = 600;
     public static String userType;
+    public static String patientName;
+    public static String dob;
 
     @Override
     public void start(Stage stage) throws IOException {

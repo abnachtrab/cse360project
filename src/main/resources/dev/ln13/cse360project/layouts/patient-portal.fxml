@@ -12,6 +12,14 @@
     </HBox>
 
     <Label fx:id="portalName"/>
+    <Label fx:id="name"/>
+    <Label fx:id="dob"/>
+    <Label fx:id="heightCm"/>
+    <Label fx:id="weightKg"/>
+    <Label fx:id="restingHeartRate"/>
+    <Label fx:id="bloodPressurekPa"/>
+    <Label fx:id="visitSummary"/>
+
     <Region VBox.vgrow="ALWAYS" />
     <HBox styleClass="foot" alignment="CENTER">
         <Button fx:id="viewAppointmentsButton" mnemonicParsing="false" onAction="#viewAppointments" styleClass="btn-btm" text="Appointments">

@@ -16,7 +16,7 @@ public class Patient {
 	private String messageHistory;
 	private String typedMessage;
 	private String patientHistory;
-	private int patientId;
+	private final int patientId;
 	protected int childId;
 
 
