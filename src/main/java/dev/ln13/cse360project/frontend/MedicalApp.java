@@ -15,6 +15,7 @@ import dev.ln13.cse360project.backend.SQLInteraction;
 public class MedicalApp extends Application {
     public static final int DEFAULT_WINDOW_WIDTH = 800;
     public static final int DEFAULT_WINDOW_HEIGHT = 600;
+    public static String userType;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,6 +28,7 @@ public class MedicalApp extends Application {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+        stage.requestFocus();
         PauseTransition splashScreenDelay = getPauseTransition(stage);
         splashScreenDelay.play();
     }
@@ -40,7 +42,6 @@ public class MedicalApp extends Application {
           return splashScreenDelay;
         }
         splashScreenDelay.setOnFinished(e -> {
-            try {
             	stage.hide();
             	Stage mainStage = new Stage();
             	mainStage.initStyle(javafx.stage.StageStyle.DECORATED);
@@ -48,34 +49,33 @@ public class MedicalApp extends Application {
                 mainStage.setY(DEFAULT_WINDOW_HEIGHT);
 
                 switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App", mainStage);
-
-
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
         });
         return splashScreenDelay;
     }
 
-    public static void switchView(String fxml, String title, Stage stage) throws IOException {
-        Parent root = new FXMLLoader(MedicalApp.class.getResource(fxml)).load();
-        double winX = stage.getWidth();
-        double winY = stage.getHeight();
-        // If the window size is NaN, set it to the default size
-        if (Double.isNaN(winX) || Double.isNaN(winY)) {
-            winX = DEFAULT_WINDOW_WIDTH;
-            winY = DEFAULT_WINDOW_HEIGHT;
-        }
-        Scene scene = new Scene(root, winX, winY);
-        scene.getStylesheets().add(
-                Objects.requireNonNull(MedicalApp.class.getResource("/dev/ln13/cse360project/styles/style.css")).toExternalForm()
-        );
+    public static void switchView(String fxml, String title, Stage stage) {
+        try {
+            Parent root = new FXMLLoader(MedicalApp.class.getResource(fxml)).load();
+            double winX = stage.getWidth();
+            double winY = stage.getHeight();
+            // If the window size is NaN, set it to the default size
+            if (Double.isNaN(winX) || Double.isNaN(winY)) {
+                winX = DEFAULT_WINDOW_WIDTH;
+                winY = DEFAULT_WINDOW_HEIGHT;
+            }
+            Scene scene = new Scene(root, winX, winY);
+            scene.getStylesheets().add(
+                    Objects.requireNonNull(MedicalApp.class.getResource("/dev/ln13/cse360project/styles/style.css")).toExternalForm()
+            );
 
-        stage.setTitle(title);
-        stage.setScene(scene);
-        stage.getIcons().add(new Image(Objects.requireNonNull(MedicalApp.class.getResourceAsStream("/dev/ln13/cse360project/images/logo.jpg"))));
-        stage.centerOnScreen();
-        stage.show();
+            stage.setTitle(title);
+            stage.setScene(scene);
+            stage.getIcons().add(new Image(Objects.requireNonNull(MedicalApp.class.getResourceAsStream("/dev/ln13/cse360project/images/logo.jpg"))));
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

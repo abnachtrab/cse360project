@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dev.ln13.cse360project.frontend.MessageInstance">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" text="Back"/>
+    <Label fx:id="messageRecipient" styleClass="title"/>
+    <VBox fx:id="messageList" spacing="10.0">
+    </VBox>
+    <HBox>
+        <TextField fx:id="messageInput" prefWidth="200.0"/>
+        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendMessage" text="Send"/>
+    </HBox>
+</VBox>

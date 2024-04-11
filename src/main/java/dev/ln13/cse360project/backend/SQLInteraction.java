@@ -4,33 +4,32 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.security.MessageDigest;
 import java.util.Random;
-import java.util.ArrayList;
 
 public class SQLInteraction {
 	static Connection conn;
 	static Statement stmt;
 
-	// public static void main(String[] args) throws SQLException {
-	// 	conn = setupConnection();
-  //
-	// 	// test scenario
-	// 	Patient p = new Patient("Joe Mama","1984",178.2, 73.1, 90, 42.1, false, "CVS", "None", "None", "Eat less");
-	// 	Doctor d = new Doctor(1, "Gregory", "House", "gamerjoe", p,  "None", "None", "None");
-  //   Nurse n = new Nurse(2, "Allison Cameron", "gamerjoe", p, "None", "None", "None", p.getName(), p.getDob(), p.getHeightCm(), p.getWeightKg(), p.getRestingHeartRate(), p.getBloodPressurekPa());
-  //   Parent pa = new Parent("Bob", "1942", 128, 129, 29, 912,"CVS", "None", "None", "None");
-  //   Child c = new Child("Bob2", "1942", 128, 129, 29, 912, true ,"CVS", "None", "None", "None");
-	// 	addPatient(p);
-	// 	addDoctor(d);
-  //   addNurse(n);
-  //   addNursePatient(n, p);
-  //   addDoctorPatient(d,p);
-  //
-  //   addChild(c);
-  //   addParent(pa);
-  //   addParentChild(pa, c);
-  //   addNursePatient(n, c);
-  //   addNursePatient(n, pa);
-	// }
+	 public static void main(String[] args) throws SQLException {
+	 	conn = setupConnection();
+
+	 	// test scenario
+	 	Patient p = new Patient("Joe Mama","1984",178.2, 73.1, 90, 42.1, false, "CVS", "None", "None", "Eat less");
+	 	Doctor d = new Doctor(1, "Gregory", "House", "gamerjoe", p,  "None", "None", "None");
+     Nurse n = new Nurse(2, "Allison Cameron", "gamerjoe", p, "None", "None", "None", p.getName(), p.getDob(), p.getHeightCm(), p.getWeightKg(), p.getRestingHeartRate(), p.getBloodPressurekPa());
+     Parent pa = new Parent("Bob", "1942", 128, 129, 29, 912,"CVS", "None", "None", "None");
+     Child c = new Child("Bob2", "1942", 128, 129, 29, 912, true ,"CVS", "None", "None", "None");
+	 	addPatient(p);
+	 	addDoctor(d);
+     addNurse(n);
+     addNursePatient(n, p);
+     addDoctorPatient(d,p);
+
+     addChild(c);
+     addParent(pa);
+     addParentChild(pa, c);
+     addNursePatient(n, c);
+     addNursePatient(n, pa);
+	 }
 
 	public static Connection setupConnection() throws SQLException {
 		// Check if database exists
@@ -38,7 +37,7 @@ public class SQLInteraction {
 		stmt = conn.createStatement();
 
 		ResultSet r = conn.getMetaData().getTables(null, null, null, null);
-		ArrayList<String> tables = new ArrayList<String>();
+		ArrayList<String> tables = new ArrayList<>();
 		while (r.next()) {
 			tables.add(r.getString("TABLE_NAME"));
 		}
@@ -87,9 +86,9 @@ public class SQLInteraction {
 			"#",
 			"%"
 		};
-		for (int i = 0; i < payloads.length; i++) {
-			input = input.replaceAll(payloads[i], "");
-		}
+        for (String payload : payloads) {
+            input = input.replaceAll(payload, "");
+        }
 		return input;
 	}
 
@@ -97,7 +96,7 @@ public class SQLInteraction {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(input.getBytes());
-			return new String(bytesToHex(md.digest()));
+			return bytesToHex(md.digest());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -106,13 +105,13 @@ public class SQLInteraction {
 
 	public static String bytesToHex(byte[] bytes) {
 		StringBuilder hexString = new StringBuilder(2 * bytes.length);
-		for (int i = 0; i < bytes.length; i++) {
-			String hex = Integer.toHexString(0xff & bytes[i]);
-			if (hex.length() == 1) {
-				hexString.append('0');
-			}
-			hexString.append(hex);
-		}
+        for (byte aByte : bytes) {
+            String hex = Integer.toHexString(0xff & aByte);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
 		return hexString.toString();
 	}
 
@@ -124,8 +123,7 @@ public class SQLInteraction {
 			int index = (int) (rnd.nextFloat() * CHARS.length());
 			salt.append(CHARS.charAt(index));
 		}
-		String saltStr = salt.toString();
-		return saltStr;
+        return salt.toString();
 	}
   // PARENT
   public static void addParent(Parent parent) throws SQLException {
@@ -143,7 +141,7 @@ public class SQLInteraction {
 			return null;
 		}
     // check if patient is a parent
-    sql = String.format("SELECT * FROM Parents WHERE id='%d'", r.getString("id"));
+    sql = String.format("SELECT * FROM Parents WHERE id='%d'", Integer.parseInt(r.getString("id")));
     r = stmt.executeQuery(sql);
     if (!r.next()) {
 			return null;
