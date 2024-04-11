@@ -37,7 +37,7 @@ public class MedicalApp extends Application {
           SQLInteraction.setupConnection();
         } catch (SQLException e) {
           System.out.println("Database connection failed.");
-          return;
+          return splashScreenDelay;
         }
         splashScreenDelay.setOnFinished(e -> {
             try {
