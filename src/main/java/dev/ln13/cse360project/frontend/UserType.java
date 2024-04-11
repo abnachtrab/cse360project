@@ -15,7 +15,7 @@ public class UserType {
 
     @FXML
     private void initialize() {
-        appNameText.setText("APP TITLE HERE");
+        appNameText.setText("Medical App");
         userTypeText.setText("Are you signing in as a patient or a care provider?");
     }
 

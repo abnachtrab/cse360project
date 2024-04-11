@@ -14,5 +14,8 @@
     <Label fx:id="loginErrorText"/>
     <TextField fx:id="usernameField"/>
     <PasswordField fx:id="passwordField"/>
+    
     <Button text="Log In" onAction="#submitLogin"/>
+    <Button text="Back" onAction="#backToMain"/>
+    <Button text="Create Account" onAction="#createAccount"/>
 </VBox>
