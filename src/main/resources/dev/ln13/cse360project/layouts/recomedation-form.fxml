@@ -8,11 +8,15 @@
   <HBox alignment="CENTER">
         <Label text="Patient Intake" textFill="#0f0f0f"/>
     </HBox>
-        
+        <Label text="Patient Name:"/>
+        <TextField fx:id="patientNameField"/>
+        <Label text="Patient Dob:"/>
+        <TextField fx:id="patientDobField"/>
         <Label text="Perscription Recomendations:"/>
         <TextField fx:id="perscriptionField"/>
         <Label text="General recomendations"/>
         <TextField fx:id="recomendationField"/>
+        <Label fxId ="errorLabel"/>
         
         
         

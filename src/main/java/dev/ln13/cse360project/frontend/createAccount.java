@@ -21,15 +21,15 @@ public class createAccount {
 
     public Label appNameText;
     public Label portalName;
-    public Label loginErrorText;
+    
     public TextField firstName;
     public TextField lastName;
     public TextField password;
     public TextField confirmPassword;
     public CheckBox isNurse;
     public Label nurseCheckboxText;
-    public Label createAccountError;
-
+    public Label loginErrorText;
+ 
 
     public void initialize() throws SQLException {
 
@@ -40,72 +40,60 @@ public class createAccount {
         password.setPromptText("Enter Password");
         confirmPassword.setPromptText("Confirm Password");
         nurseCheckboxText.setText("Check if you are a Nurse");
+        loginErrorText.setText("");
     }
 
     public void submitCreateAccount(ActionEvent actionEvent) throws SQLException, IOException {
-        if(!isNurse.isSelected()){
-            String firstNameString = firstName.getText().trim();   
+        if (!isNurse.isSelected()) {
+            String firstNameString = firstName.getText().trim();
             String lastNameString = lastName.getText().trim();
-            String passwordString = password.getText().trim();  
+            String passwordString = password.getText().trim();
             String confirmPasswordString = confirmPassword.getText().trim();
-            if(!passwordString.equals(confirmPasswordString)){
+            if (!passwordString.equals(confirmPasswordString)) {
                 loginErrorText.setText("Passwords do not match. Please try again.");
                 return;
             }
-            Doctor provider = new Doctor(firstNameString, lastNameString, confirmPasswordString, null,"","", "");
+            Doctor provider = new Doctor(firstNameString, lastNameString, confirmPasswordString, null, "", "", "");
             int docId = provider.getDocId();
             appNameText.setText("Your ID is: " + docId);
             SQLInteraction.addDoctor(provider);
-         
-           
-            
-                if (provider != null) {	
-                    MedicalApp.switchView("/dev/ln13/cse360project/layouts/provider-login.fxml", "Provider Health Portal", (Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
-                    System.out.println("Account creation successful. Redirecting to provider login."); 
-                      } 
-                else {
-                    loginErrorText.setText("Invalid credentials. Please try again."); 
-                      }
 
-                    }
-        else{
-            String firstNameString = firstName.getText().trim().concat(lastName.getText().trim());  
-            String passwordString = password.getText().trim();  
+            if (provider != null) {
+                System.out.println("Account creation successful.");
+            }
+
+        } else {
+            String firstNameString = firstName.getText().trim().concat(lastName.getText().trim());
+            String passwordString = password.getText().trim();
             String confirmPasswordString = confirmPassword.getText().trim();
-            Nurse provider = new Nurse(firstNameString, confirmPasswordString, null, "", "", "", "", "", 0, 0, 0,0);
+            if (!passwordString.equals(confirmPasswordString)) {
+                loginErrorText.setText("Passwords do not match. Please try again.");
+                return;
+            }
+            Nurse provider = new Nurse(firstNameString, confirmPasswordString, null, "", "", "", "", "", 0, 0, 0, 0);
             int nurseId = provider.getNurseId();
             appNameText.setText("Your ID is: " + nurseId);
             SQLInteraction.addNurse(provider);
 
-                if (provider != null) {	
-                    MedicalApp.switchView("/dev/ln13/cse360project/layouts/provider-login.fxml", "Provider Health Portal", (Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
-                    System.out.println("Account creation successful. Redirecting to provider login."); 
-                      } 
-                else {
-                    loginErrorText.setText("Invalid credentials. Please try again."); 
-                      }
-            }
-          
+            if (provider != null) {
+                System.out.println("Account creation successful.");
+            } 
         }
-       public void checkForNurse(ActionEvent actionEvent){
-           if(isNurse.isSelected()){
-        
-            
+
+    }
+
+    public void checkForNurse(ActionEvent actionEvent) {
+        if (isNurse.isSelected()) {
+
             lastName.setVisible(false);
-           }
-           else{
+        } else {
             lastName.setVisible(true);
-           }
         }
-        public void backToMain(ActionEvent actionEvent) throws IOException {
-	        MedicalApp.switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App",
-	                (Stage)((Node) actionEvent.getSource()).getScene().getWindow()
-	        );
-	    }
-        
-           
-       
-       
-   }
+    }
 
+    public void backToMain(ActionEvent actionEvent) throws IOException {
+        MedicalApp.switchView("/dev/ln13/cse360project/layouts/user-type.fxml", "Medical App",
+                (Stage) ((Node) actionEvent.getSource()).getScene().getWindow());
+    }
 
+}

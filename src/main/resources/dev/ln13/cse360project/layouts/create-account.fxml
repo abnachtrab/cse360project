@@ -18,7 +18,9 @@
     <TextField fx:id="confirmPassword"/>
     <Label fx:id="nurseCheckboxText"/>
     <CheckBox fx:id="isNurse" onAction="#checkForNurse"/>
+   
     
     <Button text="Submit" onAction="#submitCreateAccount"/>
+     <Label fx:id="loginErrorText"/>
     <Button text="Back" onAction="#backToMain"/>
 </VBox>
