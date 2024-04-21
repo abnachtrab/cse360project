@@ -8,7 +8,7 @@
 <VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
       fx:controller="dev.ln13.cse360project.frontend.PatientPortal">
     <HBox alignment="CENTER">
-        <Label text="Patient Health Portal" textFill="#0f0f0f"/>
+        <Label text="Patient Health Portal" textFill="black"/>
     </HBox>
 
     <Label fx:id="portalName"/>

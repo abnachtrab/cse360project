@@ -20,12 +20,14 @@ public class UserType {
     }
 
     public void patientLogin(ActionEvent actionEvent) throws IOException {
+        MedicalApp.userType = "patient";
         MedicalApp.switchView("/dev/ln13/cse360project/layouts/patient-login.fxml", "Patient Health Portal",
                 (Stage)((Node) actionEvent.getSource()).getScene().getWindow()
         );
     }
 
     public void providerLogin(ActionEvent actionEvent) throws IOException {
+        MedicalApp.userType = "provider";
         MedicalApp.switchView("/dev/ln13/cse360project/layouts/provider-login.fxml", "Provider Access Portal",
                 (Stage)((Node) actionEvent.getSource()).getScene().getWindow()
         );
