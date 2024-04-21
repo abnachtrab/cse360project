@@ -7,6 +7,7 @@ import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Objects;
 
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class MedicalApp extends Application {
     private static PauseTransition getPauseTransition(Stage stage) {
         PauseTransition splashScreenDelay = new PauseTransition(javafx.util.Duration.seconds(2));
         try {
-          SQLInteraction.setupConnection();
+            SQLInteraction.setupConnection();
         } catch (SQLException e) {
           System.out.println("Database connection failed.");
           return splashScreenDelay;

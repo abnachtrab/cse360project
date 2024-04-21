@@ -1,5 +1,6 @@
 package dev.ln13.cse360project.frontend;
 
+import dev.ln13.cse360project.backend.SQLInteraction;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -10,7 +11,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class MessageInstance {
 
@@ -20,19 +23,19 @@ public class MessageInstance {
     public TextField messageInput;
     public Button sendButton;
     public Button backButton;
+    public static int conversationID;
+    private PauseTransition pause;
 
     public void sendMessage(ActionEvent actionEvent) {
         // Send message to recipient
         System.out.println("Sending message to " + messageRecipient.getText() + ": " + messageInput.getText());
-        VBox msgContainer = new VBox();
-        HBox msg = new HBox();
-        Label msgSender = new Label("You: ");
-        Label timestamp = new Label(LocalDateTime.now().toString());
-        Label msgText = new Label(messageInput.getText());
-        msg.getChildren().addAll(msgSender, msgText);
-        msgContainer.getChildren().addAll(msg, timestamp);
-        messageList.getChildren().add(msgContainer);
-        messageInput.setText("");
+        try {
+            SQLInteraction.addMessage(conversationID, MedicalApp.patientName, messageInput.getText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        messageInput.clear();
+        getMessages();
     }
 
     public void backButtonAction(ActionEvent actionEvent) {
@@ -41,29 +44,37 @@ public class MessageInstance {
 
     // Get new messages every 5 seconds
     public void getMessages() {
-        // Get messages from recipient
-        System.out.println("Getting messages from " + messageRecipient.getText());
-        VBox msgContainer = new VBox();
-        HBox msg = new HBox();
-        Label msgSender = new Label(messageRecipient.getText() + ": ");
-        Label timestamp = new Label(LocalDateTime.now().toString());
-        Label msgText = new Label("Hello!");
-        msg.getChildren().addAll(msgSender, msgText);
-        msgContainer.getChildren().addAll(msg, timestamp);
-        messageList.getChildren().add(msgContainer);
+        ArrayList<Integer> MessageIDs = new ArrayList<>();
+        messageList.getChildren().clear();
+        try {
+            MessageIDs = SQLInteraction.getMessages(conversationID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        for (Integer messageID : MessageIDs) {
+            try {
+                VBox msgContainer = new VBox();
+                HBox msg = new HBox();
+                ResultSet rs = SQLInteraction.getMessageByID(messageID);
+                Label msgSender = new Label(rs.getString("sender") + ": ");
+                Label timestamp = new Label(rs.getString("date"));
+                Label msgText = new Label(rs.getString("message"));msg.getChildren().addAll(msgSender, msgText);
+                msgContainer.getChildren().addAll(msg, timestamp);
+                messageList.getChildren().add(msgContainer);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
-    
+
     public void initialize() {
         messageRecipient.setText(recipient);
-        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(5));
-        Thread refreshThread = new Thread(() -> {
-            while (true) {
-                getMessages();
-                pause.play();
-            }
+        getMessages();
+        pause = new PauseTransition(javafx.util.Duration.seconds(1));
+        pause.setOnFinished(e -> {
+            getMessages();
+            pause.play();
         });
-        refreshThread.setDaemon(true);
-        refreshThread.start();
-        
+        pause.play();
     }
 }

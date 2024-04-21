@@ -87,6 +87,16 @@ public class SQLInteraction {
             stmt.execute(
                     "CREATE TABLE Parents_Children ( parent_id INTEGER, child_id INTEGER, FOREIGN KEY (parent_id) REFERENCES Parents(id), FOREIGN KEY (child_id) REFERENCES Children(id), PRIMARY KEY (parent_id, child_id))");
         }
+        if (!tables.contains("Messages")) {
+            System.out.println("Creating Messages table...");
+            stmt.execute(
+                    "CREATE TABLE Messages ( id INTEGER PRIMARY KEY, ConversationID INTEGER, Date TIMESTAMP, Message TEXT, Sender TEXT, FOREIGN KEY (ConversationID) REFERENCES Conversation(id))");
+        }
+        if (!tables.contains("Conversation")) {
+            System.out.println("Creating Conversation table...");
+            stmt.execute(
+                    "CREATE TABLE Conversation ( id INTEGER PRIMARY KEY, Recipient TEXT, Sender TEXT, LastMessageDate TIMESTAMP)");
+        }
         return conn;
     }
 
@@ -581,5 +591,64 @@ public class SQLInteraction {
 
     public static void closeConnection() throws SQLException {
         conn.close();
+    }
+
+    public static int addMessage(int conversationID, String sender, String message) throws SQLException {
+        Timestamp t = new Timestamp(System.currentTimeMillis());
+        String sql = String.format("INSERT INTO Messages (ConversationID, Date, Message, Sender) VALUES ('%d', '%s', '%s', '%s')", conversationID, t, message, sender);
+        stmt.executeUpdate(sql);
+        sql = String.format("UPDATE Conversation SET LastMessageDate = '%s' WHERE ConversationID = '%d'", t, conversationID);
+        stmt.executeUpdate(sql);
+        ResultSet r = stmt.executeQuery("SELECT last_insert_rowid()");
+        r.next();
+        return r.getInt(1);
+    }
+
+    public static int createConversation(String recipient, String sender) throws SQLException {
+        String sql = String.format("INSERT INTO Conversation (Recipient, Sender) VALUES ('%s', '%s')", recipient, sender);
+        stmt.executeUpdate(sql);
+        ResultSet r = stmt.executeQuery("SELECT last_insert_rowid()");
+        r.next();
+        return r.getInt(1);
+    }
+
+    public static ArrayList<Integer> getMessages(int conversationID) throws SQLException {
+        String sql = String.format("SELECT * FROM Messages WHERE ConversationID = '%d'", conversationID);
+        ResultSet r = stmt.executeQuery(sql);
+        ArrayList<Integer> messageIDs = new ArrayList<>();
+        while (r.next()) {
+            messageIDs.add(r.getInt("MessageID"));
+        }
+        return messageIDs;
+    }
+
+    public static ResultSet getMessageByID(int messageID) throws SQLException {
+        String sql = String.format("SELECT * FROM Messages WHERE MessageID = '%d'", messageID);
+        return stmt.executeQuery(sql);
+    }
+
+    public static int getConversationID(String recipient, String sender) throws SQLException {
+        String sql = String.format("SELECT * FROM Conversation WHERE Recipient = '%s' AND Sender = '%s'", recipient, sender);
+        ResultSet r = stmt.executeQuery(sql);
+        if (!r.next()) {
+            return createConversation(recipient, sender);
+        }
+        return r.getInt("conversationID");
+    }
+    public static ArrayList<Integer> getConversations(String patientName) throws SQLException {
+        String sql = String.format("SELECT * FROM Conversation WHERE Recipient = '%s' OR Sender = '%s'", patientName, patientName);
+        ResultSet r = stmt.executeQuery(sql);
+        ArrayList<Integer> conversationIDs = new ArrayList<>();
+        while (r.next()) {
+            conversationIDs.add(r.getInt("ConversationID"));
+        }
+        return conversationIDs;
+    }
+
+    public static ResultSet getConversation(int conversationID) throws SQLException {
+        String sql = String.format("SELECT * FROM Conversation WHERE ConversationID = '%d'", conversationID);
+        ResultSet r = stmt.executeQuery(sql);
+        r.next();
+        return r;
     }
 }
